@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Versión del servidor:         10.4.24-MariaDB - mariadb.org binary distribution
+-- Versión del servidor:         8.0.30 - MySQL Community Server - GPL
 -- SO del servidor:              Win64
--- HeidiSQL Versión:             12.3.0.6589
+-- HeidiSQL Versión:             12.1.0.6537
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -16,12 +16,12 @@
 
 
 -- Volcando estructura de base de datos para stazher
-CREATE DATABASE IF NOT EXISTS `stazher` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+CREATE DATABASE IF NOT EXISTS `stazher` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `stazher`;
 
 -- Volcando estructura para tabla stazher.admin
 CREATE TABLE IF NOT EXISTS `admin` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(30) NOT NULL,
   `password` varchar(60) NOT NULL,
   `firstname` varchar(50) NOT NULL,
@@ -37,11 +37,11 @@ INSERT INTO `admin` (`id`, `username`, `password`, `firstname`, `lastname`, `pho
 
 -- Volcando estructura para tabla stazher.attendance
 CREATE TABLE IF NOT EXISTS `attendance` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `employee_id` int(11) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `employee_id` int NOT NULL,
   `date` date NOT NULL,
   `time_in` time NOT NULL,
-  `status` int(1) NOT NULL,
+  `status` int NOT NULL,
   `time_out` time NOT NULL,
   `num_hr` double NOT NULL,
   PRIMARY KEY (`id`)
@@ -54,7 +54,7 @@ INSERT INTO `attendance` (`id`, `employee_id`, `date`, `time_in`, `status`, `tim
 
 -- Volcando estructura para tabla stazher.cashadvance
 CREATE TABLE IF NOT EXISTS `cashadvance` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `date_advance` date NOT NULL,
   `employee_id` varchar(15) NOT NULL,
   `amount` double NOT NULL,
@@ -67,7 +67,7 @@ INSERT INTO `cashadvance` (`id`, `date_advance`, `employee_id`, `amount`) VALUES
 
 -- Volcando estructura para tabla stazher.deductions
 CREATE TABLE IF NOT EXISTS `deductions` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `description` varchar(100) NOT NULL,
   `amount` double NOT NULL,
   PRIMARY KEY (`id`)
@@ -79,7 +79,7 @@ INSERT INTO `deductions` (`id`, `description`, `amount`) VALUES
 
 -- Volcando estructura para tabla stazher.employees
 CREATE TABLE IF NOT EXISTS `employees` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `employee_id` varchar(15) NOT NULL,
   `firstname` varchar(50) NOT NULL,
   `lastname` varchar(50) NOT NULL,
@@ -87,8 +87,8 @@ CREATE TABLE IF NOT EXISTS `employees` (
   `birthdate` date NOT NULL,
   `contact_info` varchar(100) NOT NULL,
   `gender` varchar(10) NOT NULL,
-  `position_id` int(11) NOT NULL,
-  `schedule_id` int(11) NOT NULL,
+  `position_id` int NOT NULL,
+  `schedule_id` int NOT NULL,
   `photo` varchar(200) NOT NULL,
   `created_on` date NOT NULL,
   PRIMARY KEY (`id`)
@@ -101,7 +101,7 @@ INSERT INTO `employees` (`id`, `employee_id`, `firstname`, `lastname`, `address`
 
 -- Volcando estructura para tabla stazher.overtime
 CREATE TABLE IF NOT EXISTS `overtime` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `employee_id` varchar(15) NOT NULL,
   `hours` double NOT NULL,
   `rate` double NOT NULL,
@@ -113,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `overtime` (
 
 -- Volcando estructura para tabla stazher.position
 CREATE TABLE IF NOT EXISTS `position` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `description` varchar(150) NOT NULL,
   `rate` double NOT NULL,
   PRIMARY KEY (`id`)
@@ -128,18 +128,17 @@ INSERT INTO `position` (`id`, `description`, `rate`) VALUES
 
 -- Volcando estructura para tabla stazher.schedules
 CREATE TABLE IF NOT EXISTS `schedules` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `time_in` time NOT NULL,
   `time_out` time NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla stazher.schedules: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla stazher.schedules: ~3 rows (aproximadamente)
 INSERT INTO `schedules` (`id`, `time_in`, `time_out`) VALUES
-	(1, '07:00:00', '16:00:00'),
-	(2, '08:00:00', '17:00:00'),
-	(3, '09:00:00', '18:00:00'),
-	(4, '10:00:00', '19:00:00');
+	(1, '00:30:00', '18:30:00'),
+	(2, '08:30:00', '18:30:00'),
+	(5, '08:30:00', '12:30:00');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
