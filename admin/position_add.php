@@ -13,9 +13,7 @@
 			$_SESSION['error'] = $conn->error;
 		}
 	}	
-	else{
-		$_SESSION['error'] = 'Fill up add form first';
-	}
+
 
 	header('location: position.php');
 

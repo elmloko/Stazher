@@ -14,9 +14,9 @@
 			$_SESSION['error'] = $conn->error;
 		}
 	}
-	else{
-		$_SESSION['error'] = 'Rellene el formulario de edición primero';
-	}
+	// else{
+	// 	$_SESSION['error'] = 'Rellene el formulario de edición primero';
+	// }
 
 	header('location:position.php');
 

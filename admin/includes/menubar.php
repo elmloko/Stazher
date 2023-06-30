@@ -28,12 +28,12 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="employee.php"><i class="fa fa-circle-o"></i> Lista de Empleados</a></li>
-            <li><a href="overtime.php"><i class="fa fa-circle-o"></i> Tiempo Extra</a></li>
-            <li><a href="cashadvance.php"><i class="fa fa-circle-o"></i> Adelanto en Efectivo</a></li>
+            <!-- <li><a href="overtime.php"><i class="fa fa-circle-o"></i> Tiempo Extra</a></li> -->
+            <!-- <li><a href="cashadvance.php"><i class="fa fa-circle-o"></i> Adelanto en Efectivo</a></li> -->
             <li><a href="schedule.php"><i class="fa fa-circle-o"></i> Horarios</a></li>
           </ul>
         </li>
-        <li><a href="deduction.php"><i class="fa fa-file-text"></i> Deducciones</a></li>
+        <!-- <li><a href="deduction.php"><i class="fa fa-file-text"></i> Deducciones</a></li> -->
         <li><a href="position.php"><i class="fa fa-suitcase"></i> Cargos</a></li>
         <li class="header">IMPRIMIBLES</li>
         <li><a href="payroll.php"><i class="fa fa-files-o"></i> <span>Nómina</span></a></li>

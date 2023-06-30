@@ -52,9 +52,9 @@
               <table id="example1" class="table table-bordered">
                 <thead>
                   <th class="hidden"></th>
-                  <th>Fecha</th>
                   <th>ID Empleado</th>
                   <th>Nombre</th>
+                  <th>Fecha</th>
                   <th>Hora Entrada</th>
                   <th>Hora Salida</th>
                   <th>Acción</th>
@@ -68,9 +68,9 @@
                       echo "
                         <tr>
                           <td class='hidden'></td>
-                          <td>".date('M d, Y', strtotime($row['date']))."</td>
                           <td>".$row['empid']."</td>
                           <td>".$row['firstname'].' '.$row['lastname']."</td>
+                          <td>".date('M d, Y', strtotime($row['date']))."</td>
                           <td>".date('h:i A', strtotime($row['time_in'])).$status."</td>
                           <td>".date('h:i A', strtotime($row['time_out']))."</td>
                           <td>
