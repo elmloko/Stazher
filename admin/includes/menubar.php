@@ -35,9 +35,9 @@
         </li>
         <!-- <li><a href="deduction.php"><i class="fa fa-file-text"></i> Deducciones</a></li> -->
         <li><a href="position.php"><i class="fa fa-suitcase"></i> Cargos</a></li>
-        <li class="header">IMPRIMIBLES</li>
+        <!-- <li class="header">IMPRIMIBLES</li>
         <li><a href="payroll.php"><i class="fa fa-files-o"></i> <span>Nómina</span></a></li>
-        <li><a href="schedule_employee.php"><i class="fa fa-clock-o"></i> <span>Horarios</span></a></li>
+        <li><a href="schedule_employee.php"><i class="fa fa-clock-o"></i> <span>Horarios</span></a></li> -->
       </ul>
     </section>
     <!-- /.sidebar -->

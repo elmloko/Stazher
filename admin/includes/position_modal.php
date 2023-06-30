@@ -16,13 +16,13 @@
                     	<input type="text" class="form-control" id="title" name="title" required>
                   	</div>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="rate" class="col-sm-3 control-label">Pago por Hora</label>
 
                     <div class="col-sm-9">
                       <input type="text" class="form-control" id="rate" name="rate" required>
                     </div>
-                </div>
+                </div> -->
           	</div>
           	<div class="modal-footer">
             	<button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Cerrar</button>
@@ -52,13 +52,13 @@
                       <input type="text" class="form-control" id="edit_title" name="title">
                     </div>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="edit_rate" class="col-sm-3 control-label">Costo por Hora</label>
 
                     <div class="col-sm-9">
                       <input type="text" class="form-control" id="edit_rate" name="rate">
                     </div>
-                </div>
+                </div> -->
           	</div>
           	<div class="modal-footer">
             	<button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Cerrar</button>

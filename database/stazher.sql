@@ -31,9 +31,9 @@ CREATE TABLE IF NOT EXISTS `admin` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla stazher.admin: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla stazher.admin: ~1 rows (aproximadamente)
 INSERT INTO `admin` (`id`, `username`, `password`, `firstname`, `lastname`, `photo`, `created_on`) VALUES
-	(1, 'admin', '$2y$10$UrGSvHTWm8.ZK4BzPmo8iuqsK6XF5RfHay6ooC5D50y/nShon5wqe', 'Mauricio', 'Sevilla', 'logo1.jpg', '2019-12-18');
+	(1, 'admin', '$2y$10$UrGSvHTWm8.ZK4BzPmo8iuqsK6XF5RfHay6ooC5D50y/nShon5wqe', 'Area', 'Sistemas', 'images-k9zsGpqit-transformed__1_-removebg-preview (1).png', '2019-12-18');
 
 -- Volcando estructura para tabla stazher.attendance
 CREATE TABLE IF NOT EXISTS `attendance` (
@@ -45,13 +45,14 @@ CREATE TABLE IF NOT EXISTS `attendance` (
   `time_out` time NOT NULL,
   `num_hr` double NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=122 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- Volcando datos para la tabla stazher.attendance: ~2 rows (aproximadamente)
 INSERT INTO `attendance` (`id`, `employee_id`, `date`, `time_in`, `status`, `time_out`, `num_hr`) VALUES
-	(119, 24, '2020-01-07', '10:11:26', 0, '00:00:00', 0),
 	(120, 25, '2020-01-07', '10:17:04', 0, '00:00:00', 0),
-	(121, 24, '2023-06-29', '19:35:02', 0, '00:00:00', 0);
+	(121, 24, '2023-06-29', '19:35:02', 0, '00:00:00', 0),
+	(122, 26, '2023-06-30', '18:50:15', 0, '18:50:27', 0.33333333333333),
+	(123, 27, '2023-06-30', '19:01:19', 0, '19:01:24', 0.51666666666667);
 
 -- Volcando estructura para tabla stazher.cashadvance
 CREATE TABLE IF NOT EXISTS `cashadvance` (
@@ -62,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `cashadvance` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla stazher.cashadvance: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla stazher.cashadvance: ~1 rows (aproximadamente)
 INSERT INTO `cashadvance` (`id`, `date_advance`, `employee_id`, `amount`) VALUES
 	(1, '2020-01-07', '25', 50000);
 
@@ -74,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `deductions` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla stazher.deductions: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla stazher.deductions: ~1 rows (aproximadamente)
 INSERT INTO `deductions` (`id`, `description`, `amount`) VALUES
 	(5, 'Pago de EPS 4%', 2500);
 
@@ -93,12 +94,14 @@ CREATE TABLE IF NOT EXISTS `employees` (
   `photo` varchar(200) NOT NULL,
   `created_on` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla stazher.employees: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla stazher.employees: ~3 rows (aproximadamente)
 INSERT INTO `employees` (`id`, `employee_id`, `firstname`, `lastname`, `address`, `birthdate`, `contact_info`, `gender`, `position_id`, `schedule_id`, `photo`, `created_on`) VALUES
-	(24, 'MAW817094635', 'Abelardo', 'Mejia', 'Calle 54 N 12-23', '1989-07-12', '', 'Female', 2, 2, '', '2020-01-07'),
-	(25, 'PJO724930615', 'Roberto', 'Velasquez', 'Av 15 12-72', '1989-06-13', '75757575', 'Male', 1, 2, '', '2020-01-07');
+	(24, 'MAW817094635', 'Abelardo', 'Mejia', 'Calle 54 N 12-23', '1989-07-12', '', 'Female', 7, 2, '', '2020-01-07'),
+	(25, 'PJO724930615', 'Roberto', 'Velasquez', 'Av 15 12-72', '1989-06-13', '75757575', 'Male', 8, 2, '', '2020-01-07'),
+	(26, 'ULQ014925673', 'Marco Antonio', 'Espinoza Rojas', 'Cota Cota', '1997-12-01', '75757575', 'Male', 7, 6, '', '2023-06-30'),
+	(27, 'IBQ138462097', 'gicela ', 'mendez', 'que te importa', '1998-04-30', '60628110', 'Female', 7, 2, '', '2023-06-30');
 
 -- Volcando estructura para tabla stazher.overtime
 CREATE TABLE IF NOT EXISTS `overtime` (
@@ -116,17 +119,13 @@ CREATE TABLE IF NOT EXISTS `overtime` (
 CREATE TABLE IF NOT EXISTS `position` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `description` varchar(150) NOT NULL,
-  `rate` double unsigned zerofill DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla stazher.position: ~4 rows (aproximadamente)
-INSERT INTO `position` (`id`, `description`, `rate`) VALUES
-	(1, 'Programador', 0000000000000000100000),
-	(2, 'Escritor', 0000000000000000000000),
-	(3, 'Marketing ', 0000000000000000042000),
-	(4, 'DiseÃ±ador GrÃ¡fico', 0000000000000000000000),
-	(5, 'asasa', 0000000000000000000000);
+-- Volcando datos para la tabla stazher.position: ~2 rows (aproximadamente)
+INSERT INTO `position` (`id`, `description`) VALUES
+	(7, 'Direccion Administrativa Finaciera'),
+	(8, 'Operaciones');
 
 -- Volcando estructura para tabla stazher.schedules
 CREATE TABLE IF NOT EXISTS `schedules` (

@@ -3,9 +3,10 @@
 
 	if(isset($_POST['add'])){
 		$title = $_POST['title'];
-		$rate = $_POST['rate'];
+		// $rate = $_POST['rate'];
 
-		$sql = "INSERT INTO position (description, rate) VALUES ('$title', '$rate')";
+		// $sql = "INSERT INTO position (description, rate) VALUES ('$title', '$rate')";
+		$sql = "INSERT INTO position (description) VALUES ('$title')";
 		if($conn->query($sql)){
 			$_SESSION['success'] = 'Position added successfully';
 		}
