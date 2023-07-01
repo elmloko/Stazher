@@ -16,11 +16,11 @@
 
     	<form action="login.php" method="POST">
       		<div class="form-group has-feedback">
-        		<input type="text" class="form-control" name="username" placeholder="input Username" required autofocus>
+        		<input type="text" class="form-control" name="username" placeholder="Ingrese el nombre de usuario" required autofocus>
         		<span class="glyphicon glyphicon-user form-control-feedback"></span>
       		</div>
           <div class="form-group has-feedback">
-            <input type="password" class="form-control" name="password" placeholder="input Password" required>
+            <input type="password" class="form-control" name="password" placeholder="Ingrese contraseña de usuario" required>
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
       		<div class="row">
