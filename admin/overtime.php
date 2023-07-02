@@ -54,7 +54,7 @@
                 <thead>
                   <th class="hidden"></th>
                   <th>Fecha</th>
-                  <th>ID Empleado</th>
+                  <th>ID Pasantes</th>
                   <th>Nombre</th>
                   <th>No. de Horas</th>
                   <th>Rate</th>

@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla stazher.admin: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla stazher.admin: ~0 rows (aproximadamente)
 INSERT INTO `admin` (`id`, `username`, `password`, `firstname`, `lastname`, `photo`, `created_on`) VALUES
 	(1, 'admin', '$2y$10$UrGSvHTWm8.ZK4BzPmo8iuqsK6XF5RfHay6ooC5D50y/nShon5wqe', 'Area', 'Sistemas', 'images-k9zsGpqit-transformed__1_-removebg-preview (1).png', '2019-12-18');
 
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `attendance` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla stazher.attendance: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla stazher.attendance: ~4 rows (aproximadamente)
 INSERT INTO `attendance` (`id`, `employee_id`, `date`, `time_in`, `status`, `time_out`, `num_hr`) VALUES
 	(121, 24, '2023-06-29', '19:35:02', 0, '00:00:00', 0),
 	(122, 26, '2023-06-30', '18:50:15', 0, '18:50:27', 0.33333333333333),
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `career` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla stazher.career: ~5 rows (aproximadamente)
+-- Volcando datos para la tabla stazher.career: ~0 rows (aproximadamente)
 INSERT INTO `career` (`id`, `name_career`) VALUES
 	(1, 'Ingenierira en Sistemas'),
 	(2, 'Ingeniería en Telecomunicaciones'),
@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `cashadvance` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla stazher.cashadvance: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla stazher.cashadvance: ~0 rows (aproximadamente)
 INSERT INTO `cashadvance` (`id`, `date_advance`, `employee_id`, `amount`) VALUES
 	(1, '2020-01-07', '25', 50000);
 
@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `deductions` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla stazher.deductions: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla stazher.deductions: ~0 rows (aproximadamente)
 INSERT INTO `deductions` (`id`, `description`, `amount`) VALUES
 	(5, 'Pago de EPS 4%', 2500);
 
@@ -118,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `employees` (
 -- Volcando datos para la tabla stazher.employees: ~3 rows (aproximadamente)
 INSERT INTO `employees` (`id`, `employee_id`, `firstname`, `lastname`, `identity_card`, `address`, `email`, `birthdate`, `contact_info`, `gender`, `position_id`, `schedule_id`, `institution_id`, `modality_id`, `career_id`, `photo`, `created_on`) VALUES
 	(26, 'ULQ014925673', 'Marco Antonio', 'Espinoza Rojas', 2323232, 'Cota Cota', '', '1997-12-01', '75757575', 'Male', 7, 6, 2, 1, 1, '', '2023-06-30'),
-	(27, 'IBQ138462097', 'gicela ', 'mendez', 54334, 'que te importa', '', '1998-04-30', '60628110', 'Female', 7, 2, 1, 2, 2, '', '2023-06-30'),
+	(27, 'IBQ138462097', 'gicela ', 'mendez', 232323, 'que te importa', 'marco@maiul.com', '1998-04-30', '60628110', 'Male', 7, 5, 2, 2, 2, '', '2023-06-30'),
 	(29, 'KYS706231854', 'Christian Yoel', 'Espinoza Rojas', 121212, 'Miraflores', 'ale@gmail.com', '2023-07-11', '21212', 'Male', 7, 5, 1, 2, 4, '', '2023-07-02');
 
 -- Volcando estructura para tabla stazher.institution
@@ -128,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `institution` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla stazher.institution: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla stazher.institution: ~0 rows (aproximadamente)
 INSERT INTO `institution` (`id`, `name_institution`) VALUES
 	(1, 'Universidad Privada Franz Tamayo'),
 	(2, 'Universidad Privada del Valle'),
@@ -142,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `modality` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla stazher.modality: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla stazher.modality: ~0 rows (aproximadamente)
 INSERT INTO `modality` (`id`, `type_modality`) VALUES
 	(1, 'Pasantia'),
 	(2, 'Practica Profesional '),

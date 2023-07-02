@@ -15,7 +15,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-        <li>Empleados</li>
+        <li>Pasante</li>
         <li class="active">Horarios</li>
       </ol>
     </section>

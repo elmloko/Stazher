@@ -64,7 +64,7 @@
                 echo "<h3>".$query->num_rows."</h3>";
               ?>
 
-              <p>Total de Empleados</p>
+              <p>Total de Pasantes</p>
             </div>
             <div class="icon">
               <i class="ion ion-person-stalker"></i>
@@ -91,7 +91,7 @@
                 echo "<h3>".number_format($percentage, 2)."<sup style='font-size: 20px'>%</sup></h3>";
               ?>
           
-              <p>Empleados a Tiempo</p>
+              <p>Pasantes a Tiempo</p>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>

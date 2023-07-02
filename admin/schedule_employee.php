@@ -15,7 +15,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-        <li>Empleados</li>
+        <li>Pasantes</li>
         <li class="active">Horarios</li>
       </ol>
     </section>
@@ -52,7 +52,7 @@
             <div class="box-body">
               <table id="example1" class="table table-bordered">
                 <thead>
-                  <th>ID Empleado</th>
+                  <th>ID Pasante</th>
                   <th>Nombre</th>
                   <th>Horarios</th>
                   <th>Acción</th>

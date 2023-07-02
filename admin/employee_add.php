@@ -32,7 +32,7 @@
 		$sql = "INSERT INTO employees (employee_id, firstname, lastname, address, birthdate, contact_info, gender, position_id, career_id, institution_id, modality_id, schedule_id, photo, identity_card, created_on) VALUES ('$employee_id', '$firstname', '$lastname', '$address', '$birthdate', '$contact', '$gender', '$position', '$career', '$institution', '$modality', '$schedule', '$filename', '$identity_card', NOW())";
 
 		if($conn->query($sql)){
-			$_SESSION['success'] = 'Empleado añadido satisfactoriamente';
+			$_SESSION['success'] = 'Pasante añadido satisfactoriamente';
 		}
 		else{
 			$_SESSION['error'] = $conn->error;

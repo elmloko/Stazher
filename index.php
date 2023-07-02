@@ -9,7 +9,7 @@
     </div>
 
     <div class="login-box-body">
-      <h4 class="login-box-msg">Ingrese su ID de Empleado</h4>
+      <h4 class="login-box-msg">Ingrese su ID de Pasante</h4>
 
       <form id="attendance">
         <div class="form-group">

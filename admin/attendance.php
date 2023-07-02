@@ -52,7 +52,7 @@
               <table id="example1" class="table table-bordered">
                 <thead>
                   <th class="hidden"></th>
-                  <th>ID Empleado</th>
+                  <th>ID Pasante</th>
                   <th>Nombre</th>
                   <th>Fecha</th>
                   <th>Hora Entrada</th>

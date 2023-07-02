@@ -20,7 +20,7 @@
 		$sql = "UPDATE employees SET firstname = '$firstname', lastname = '$lastname', identity_card = '$identity_card', email = '$email', address = '$address', birthdate = '$birthdate', contact_info = '$contact', gender = '$gender', position_id = '$position', schedule_id = '$schedule', career_id = '$career', institution_id = '$institution', modality_id = '$modality' WHERE id = '$empid'";
 		
 		if($conn->query($sql)){
-			$_SESSION['success'] = 'Empleado actualizado con éxito';
+			$_SESSION['success'] = 'Pasante actualizado con éxito';
 		}
 		else{
 			$_SESSION['error'] = $conn->error;
@@ -28,7 +28,7 @@
 
 	}
 	else{
-		$_SESSION['error'] = 'Seleccionar empleado para editar primero';
+		$_SESSION['error'] = 'Seleccionar pasante para editar primero';
 	}
 
 	header('location: employee.php');

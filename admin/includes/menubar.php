@@ -21,14 +21,14 @@
         <li class="treeview">
           <a href="#">
             <i class="fa fa-users"></i>
-            <span>Empleados</span>
+            <span>Pasantes</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="employee.php"><i class="fa fa-user"></i> Lista de Empleados</a></li>
-            <li><a href="schedule_employee.php"><i class="fa fa-clock-o"></i> <span>Horarios</span></a></li>
+            <li><a href="employee.php"><i class="fa fa-user"></i> Lista de Pasantes</a></li>
+            <li><a href="schedule_employee.php"><i class="fa fa-clock-o"></i> <span>Horarios de Pasantes</span></a></li>
             <!-- <li><a href="overtime.php"><i class="fa fa-circle-o"></i> Tiempo Extra</a></li> -->
             <!-- <li><a href="cashadvance.php"><i class="fa fa-circle-o"></i> Adelanto en Efectivo</a></li> -->
           </ul>

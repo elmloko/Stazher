@@ -106,7 +106,7 @@
 		}
 		else{
 			$output['error'] = true;
-			$output['message'] = 'ID de empleado no encontrado';
+			$output['message'] = 'ID de Pasante no encontrado';
 		}
 		
 	}

@@ -10,7 +10,7 @@
           	<div class="modal-body">
             	<form class="form-horizontal" method="POST" action="attendance_add.php">
           		  <div class="form-group">
-                  	<label for="employee" class="col-sm-3 control-label">ID Empleado</label>
+                  	<label for="employee" class="col-sm-3 control-label">ID Pasante</label>
 
                   	<div class="col-sm-9">
                     	<input type="text" class="form-control" id="employee" name="employee" required>
@@ -115,7 +115,7 @@
             	<form class="form-horizontal" method="POST" action="attendance_delete.php">
             		<input type="hidden" id="del_attid" name="id">
             		<div class="text-center">
-	                	<p>ELIMINAR EMPLEADO</p>
+	                	<p>ELIMINAR PASANTE</p>
 	                	<h2 id="del_employee_name" class="bold"></h2>
 	            	</div>
           	</div>
