@@ -5,12 +5,12 @@
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title"><b>Agregar Area</b></h4>
+				<h4 class="modal-title"><b>Agregar Modalidad</b></h4>
 			</div>
 			<div class="modal-body">
-				<form class="form-horizontal" method="POST" action="position_add.php">
+				<form class="form-horizontal" method="POST" action="modality_add.php">
 					<div class="form-group">
-						<label for="title" class="col-sm-3 control-label">Titulo del Area</label>
+						<label for="title" class="col-sm-3 control-label">Titulo de la Modalidad de Titulacion</label>
 
 						<div class="col-sm-9">
 							<input type="text" class="form-control" id="title" name="title" required>
@@ -33,13 +33,13 @@
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title"><b>Actualizar Area</b></h4>
+				<h4 class="modal-title"><b>Actualizar Modalidad</b></h4>
 			</div>
 			<div class="modal-body">
-				<form class="form-horizontal" method="POST" action="position_edit.php">
-					<input type="hidden" id="posid" name="id">
+				<form class="form-horizontal" method="POST" action="modality_edit.php">
+					<input type="hidden" id="modid" name="id">
 					<div class="form-group">
-						<label for="edit_title" class="col-sm-3 control-label">Titulo del Area</label>
+						<label for="edit_title" class="col-sm-3 control-label">Titulo de la Modalidad de Titulacion</label>
 
 						<div class="col-sm-9">
 							<input type="text" class="form-control" id="edit_title" name="title">
@@ -65,11 +65,11 @@
 				<h4 class="modal-title"><b>Eliminando...</b></h4>
 			</div>
 			<div class="modal-body">
-				<form class="form-horizontal" method="POST" action="position_delete.php">
-					<input type="hidden" id="del_posid" name="id">
+				<form class="form-horizontal" method="POST" action="modality_delete.php">
+					<input type="hidden" id="del_modid" name="id">
 					<div class="text-center">
-						<p>ELIMINAR AREA</p>
-						<h2 id="del_position" class="bold"></h2>
+						<p>ELIMINAR MODALIDA</p>
+						<h2 id="del_modality" class="bold"></h2>
 					</div>
 			</div>
 			<div class="modal-footer">

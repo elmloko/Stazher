@@ -27,17 +27,21 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="employee.php"><i class="fa fa-circle-o"></i> Lista de Empleados</a></li>
+            <li><a href="employee.php"><i class="fa fa-user"></i> Lista de Empleados</a></li>
+            <li><a href="schedule_employee.php"><i class="fa fa-clock-o"></i> <span>Horarios</span></a></li>
             <!-- <li><a href="overtime.php"><i class="fa fa-circle-o"></i> Tiempo Extra</a></li> -->
             <!-- <li><a href="cashadvance.php"><i class="fa fa-circle-o"></i> Adelanto en Efectivo</a></li> -->
-            <li><a href="schedule.php"><i class="fa fa-circle-o"></i> Horarios</a></li>
           </ul>
         </li>
         <!-- <li><a href="deduction.php"><i class="fa fa-file-text"></i> Deducciones</a></li> -->
-        <li><a href="position.php"><i class="fa fa-suitcase"></i> Cargos</a></li>
-        <!-- <li class="header">IMPRIMIBLES</li>
-        <li><a href="payroll.php"><i class="fa fa-files-o"></i> <span>Nómina</span></a></li>
-        <li><a href="schedule_employee.php"><i class="fa fa-clock-o"></i> <span>Horarios</span></a></li> -->
+        <li class="header">IMPRIMIBLES</li>
+        <!-- <li><a href="payroll.php"><i class="fa fa-files-o"></i> <span>Nómina</span></a></li> -->
+        <li class="header">CONFIGURACION</li>
+        <li><a href="schedule.php"><i class="fa fa-hourglass"></i> Horarios</a></li>
+        <li><a href="position.php"><i class="fa fa-id-card-o"></i> Cargos</a></li>
+        <li><a href="institution.php"><i class="fa fa-suitcase"></i> Instituciones</a></li>
+        <li><a href="career.php"><i class="fa fa-university""></i> Carreras Universitarias</a></li>
+        <li><a href="modality.php"><i class="fa fa-handshake-o"></i> Modalidad de Titulacion</a></li>
       </ul>
     </section>
     <!-- /.sidebar -->

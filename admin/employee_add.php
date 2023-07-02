@@ -5,10 +5,14 @@
 		$firstname = $_POST['firstname'];
 		$lastname = $_POST['lastname'];
 		$address = $_POST['address'];
+		$identity_card = $_POST['identity_card'];
 		$birthdate = $_POST['birthdate'];
 		$contact = $_POST['contact'];
 		$gender = $_POST['gender'];
 		$position = $_POST['position'];
+		$career = $_POST['career'];
+		$institution = $_POST['institution'];
+		$modality = $_POST['modality'];
 		$schedule = $_POST['schedule'];
 		$filename = $_FILES['photo']['name'];
 		if(!empty($filename)){
@@ -25,7 +29,8 @@
 		}
 		$employee_id = substr(str_shuffle($letters), 0, 3).substr(str_shuffle($numbers), 0, 9);
 		//
-		$sql = "INSERT INTO employees (employee_id, firstname, lastname, address, birthdate, contact_info, gender, position_id, schedule_id, photo, created_on) VALUES ('$employee_id', '$firstname', '$lastname', '$address', '$birthdate', '$contact', '$gender', '$position', '$schedule', '$filename', NOW())";
+		$sql = "INSERT INTO employees (employee_id, firstname, lastname, address, birthdate, contact_info, gender, position_id, career_id, institution_id, modality_id, schedule_id, photo, identity_card, created_on) VALUES ('$employee_id', '$firstname', '$lastname', '$address', '$birthdate', '$contact', '$gender', '$position', '$career', '$institution', '$modality', '$schedule', '$filename', '$identity_card', NOW())";
+
 		if($conn->query($sql)){
 			$_SESSION['success'] = 'Empleado añadido satisfactoriamente';
 		}
@@ -39,4 +44,3 @@
 	}
 
 	header('location: employee.php');
-?>

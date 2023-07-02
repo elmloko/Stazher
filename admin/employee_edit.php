@@ -5,14 +5,20 @@
 		$empid = $_POST['id'];
 		$firstname = $_POST['firstname'];
 		$lastname = $_POST['lastname'];
+		$identity_card = $_POST['identity_card'];
+		$email = $_POST['email'];
 		$address = $_POST['address'];
 		$birthdate = $_POST['birthdate'];
 		$contact = $_POST['contact'];
 		$gender = $_POST['gender'];
 		$position = $_POST['position'];
 		$schedule = $_POST['schedule'];
+		$career = $_POST['career'];
+		$institution = $_POST['institution'];
+		$modality = $_POST['modality'];
 		
-		$sql = "UPDATE employees SET firstname = '$firstname', lastname = '$lastname', address = '$address', birthdate = '$birthdate', contact_info = '$contact', gender = '$gender', position_id = '$position', schedule_id = '$schedule' WHERE id = '$empid'";
+		$sql = "UPDATE employees SET firstname = '$firstname', lastname = '$lastname', identity_card = '$identity_card', email = '$email', address = '$address', birthdate = '$birthdate', contact_info = '$contact', gender = '$gender', position_id = '$position', schedule_id = '$schedule', career_id = '$career', institution_id = '$institution', modality_id = '$modality' WHERE id = '$empid'";
+		
 		if($conn->query($sql)){
 			$_SESSION['success'] = 'Empleado actualizado con éxito';
 		}
