@@ -35,6 +35,7 @@
       </li>
       <!-- <li><a href="deduction.php"><i class="fa fa-file-text"></i> Deducciones</a></li> -->
       <li class="header">IMPRIMIBLES</li>
+      <li><a href="hours.php"><i class="fa fa-hourglass"></i> Horarios Totales</a></li>
       <!-- <li><a href="payroll.php"><i class="fa fa-files-o"></i> <span>Nómina</span></a></li> -->
       <li class="header">CONFIGURACION</li>
       <li class="treeview">

@@ -45,13 +45,13 @@ CREATE TABLE IF NOT EXISTS `attendance` (
   `time_out` time NOT NULL,
   `num_hr` double NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla stazher.attendance: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla stazher.attendance: ~3 rows (aproximadamente)
 INSERT INTO `attendance` (`id`, `employee_id`, `date`, `time_in`, `status`, `time_out`, `num_hr`) VALUES
-	(121, 24, '2023-06-29', '19:35:02', 0, '00:00:00', 0),
-	(122, 26, '2023-06-30', '18:50:15', 0, '18:50:27', 0.33333333333333),
-	(123, 27, '2023-06-30', '19:01:19', 0, '19:01:24', 0.51666666666667);
+	(122, 26, '2023-06-30', '07:00:00', 1, '18:50:27', 4),
+	(123, 27, '2023-06-30', '00:00:00', 1, '12:00:00', 3.5),
+	(124, 26, '2023-04-11', '10:45:00', 1, '22:45:00', 4);
 
 -- Volcando estructura para tabla stazher.career
 CREATE TABLE IF NOT EXISTS `career` (
@@ -113,13 +113,14 @@ CREATE TABLE IF NOT EXISTS `employees` (
   `photo` varchar(200) NOT NULL,
   `created_on` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla stazher.employees: ~3 rows (aproximadamente)
 INSERT INTO `employees` (`id`, `employee_id`, `firstname`, `lastname`, `identity_card`, `address`, `email`, `birthdate`, `contact_info`, `gender`, `position_id`, `schedule_id`, `institution_id`, `modality_id`, `career_id`, `photo`, `created_on`) VALUES
-	(26, 'ULQ014925673', 'Marco Antonio', 'Espinoza Rojas', 2323232, 'Cota Cota', '', '1997-12-01', '75757575', 'Male', 7, 6, 2, 1, 1, '', '2023-06-30'),
+	(26, 'ULQ014925673', 'Marco Antonio', 'Espinoza Rojas', 10909669, 'Cota Cota', 'marco@gmail.com', '1997-12-01', '75847560', 'Male', 7, 2, 1, 2, 1, '', '2023-06-30'),
 	(27, 'IBQ138462097', 'gicela ', 'mendez', 232323, 'que te importa', 'marco@maiul.com', '1998-04-30', '60628110', 'Male', 7, 5, 2, 2, 2, '', '2023-06-30'),
-	(29, 'KYS706231854', 'Christian Yoel', 'Espinoza Rojas', 121212, 'Miraflores', 'ale@gmail.com', '2023-07-11', '21212', 'Male', 7, 5, 1, 2, 4, '', '2023-07-02');
+	(29, 'KYS706231854', 'Christian Yoel', 'Espinoza Rojas', 121212, 'Miraflores', 'ale@gmail.com', '2023-07-11', '21212', 'Male', 7, 5, 1, 2, 4, '', '2023-07-02'),
+	(31, 'LD121213213', 'Leonardo ', 'Doria Medina', 121213213, 'Llojeta', 'leo@gmail.com', '2023-02-21', '2131231231', 'Male', 7, 5, 2, 2, 2, '', '2023-07-02');
 
 -- Volcando estructura para tabla stazher.institution
 CREATE TABLE IF NOT EXISTS `institution` (
