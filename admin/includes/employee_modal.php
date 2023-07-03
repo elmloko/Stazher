@@ -209,18 +209,18 @@
           </div>
 
           <div class="form-group">
-            <label for="identity_card" class="col-sm-3 control-label">Carnet de Identidad</label>
+            <label for="edit_identity_card" class="col-sm-3 control-label">Carnet de Identidad</label>
 
             <div class="col-sm-9">
-              <input type="number" class="form-control" id="identity_card" name="identity_card">
+              <input type="number" class="form-control" id="edit_identity_card" name="identity_card">
             </div>
           </div>
 
           <div class="form-group">
-            <label for="email" class="col-sm-3 control-label">Correo Electronico</label>
+            <label for="email_val" class="col-sm-3 control-label">Correo Electronico</label>
 
             <div class="col-sm-9">
-              <input type="email" class="form-control" id="edit_email" name="email">
+              <input type="email" class="form-control" id="email_val" name="email">
             </div>
           </div>
 
@@ -278,11 +278,11 @@
           </div>
 
           <div class="form-group">
-            <label for="career" class="col-sm-3 control-label">Carrera Universitaria</label>
+            <label for="edit_career" class="col-sm-3 control-label">Carrera Universitaria</label>
 
             <div class="col-sm-9">
               <select class="form-control" name="career" id="edit_career" required>
-                <option value="" selected>- Seleccionar -</option>
+              <option selected id="career_val"></option>
                 <?php
                 $sql = "SELECT * FROM career";
                 $query = $conn->query($sql);
@@ -297,11 +297,11 @@
           </div>
 
           <div class="form-group">
-            <label for="institution" class="col-sm-3 control-label">Universidad o Institucion</label>
+            <label for="edit_institution" class="col-sm-3 control-label">Universidad o Institucion</label>
 
             <div class="col-sm-9">
               <select class="form-control" name="institution" id="edit_institution" required>
-                <option value="" selected>- Seleccionar -</option>
+              <option selected id="institution_val"></option>
                 <?php
                 $sql = "SELECT * FROM institution";
                 $query = $conn->query($sql);
@@ -316,11 +316,11 @@
           </div>
 
           <div class="form-group">
-            <label for="modality" class="col-sm-3 control-label">Tipo de Modalidad</label>
+            <label for="edit_modality" class="col-sm-3 control-label">Tipo de Modalidad</label>
 
             <div class="col-sm-9">
               <select class="form-control" name="modality" id="edit_modality" required>
-                <option value="" selected>- Seleccionar -</option>
+              <option selected id="modality_val"></option>
                 <?php
                 $sql = "SELECT * FROM modality";
                 $query = $conn->query($sql);

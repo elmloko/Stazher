@@ -109,7 +109,6 @@ function getRow(id){
     dataType: 'json',
     success: function(response){
       $('#carid').val(response.id);
-      $('#edit_title').val(response.description);
       $('#edit_name_career').val(response.name_career);
       $('#del_carid').val(response.id);
       $('#del_career').html(response.description);

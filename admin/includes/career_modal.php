@@ -40,10 +40,10 @@
 				<form class="form-horizontal" method="POST" action="career_edit.php">
 					<input type="hidden" id="carid" name="id">
 					<div class="form-group">
-						<label for="edit_title" class="col-sm-3 control-label">Titulo de la Carrera</label>
+						<label for="edit_name_career" class="col-sm-3 control-label">Titulo de la Carrera</label>
 
 						<div class="col-sm-9">
-							<input type="text" class="form-control" id="edit_title" name="title">
+							<input type="text" class="form-control" id="edit_name_career" name="name_career">
 						</div>
 					</div>
 			</div>

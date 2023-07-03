@@ -39,9 +39,9 @@
 				<form class="form-horizontal" method="POST" action="institution_edit.php">
 					<input type="hidden" id="insid" name="id">
 					<div class="form-group">
-						<label for="edit_title" class="col-sm-3 control-label">Nombre la Institucion</label>
+						<label for="edit_name_institution" class="col-sm-3 control-label">Nombre la Institucion</label>
 						<div class="col-sm-9">
-							<input type="text" class="form-control" id="edit_title" name="title" >
+							<input type="text" class="form-control" id="edit_name_institution" name="name_institution" >
 						</div>
 					</div>
 			</div>

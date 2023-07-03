@@ -39,10 +39,10 @@
 				<form class="form-horizontal" method="POST" action="modality_edit.php">
 					<input type="hidden" id="modid" name="id">
 					<div class="form-group">
-						<label for="edit_title" class="col-sm-3 control-label">Titulo de la Modalidad de Titulacion</label>
+						<label for="edit_type_modality" class="col-sm-3 control-label">Titulo de la Modalidad de Titulacion</label>
 
 						<div class="col-sm-9">
-							<input type="text" class="form-control" id="edit_title" name="title">
+							<input type="text" class="form-control" id="edit_type_modality" name="type_modality">
 						</div>
 					</div>
 			</div>

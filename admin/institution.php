@@ -112,7 +112,6 @@
         dataType: 'json',
         success: function(response) {
           $('#insid').val(response.id);
-          $('#edit_title').val(response.description);
           $('#edit_name_institution').val(response.name_institution);
           $('#del_insid').val(response.id);
           $('#del_institution').html(response.description);

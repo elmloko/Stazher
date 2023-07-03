@@ -153,8 +153,10 @@
           $('#edit_identity_card').val(response.identity_card);
           $('#edit_address').val(response.address);
           $('#edit_email').val(response.email);
+          $('#edit_career').val(response.career);
           $('#datepicker_edit').val(response.birthdate);
           $('#edit_contact').val(response.contact_info);
+          $('#email_val').val(response.email).html(response.email);
           $('#gender_val').val(response.gender).html(response.gender);
           $('#position_val').val(response.position_id).html(response.description);
           $('#career_val').val(response.career_id).html(response.name_career);
