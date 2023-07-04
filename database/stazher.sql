@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla stazher.admin: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla stazher.admin: ~1 rows (aproximadamente)
 INSERT INTO `admin` (`id`, `username`, `password`, `firstname`, `lastname`, `photo`, `created_on`) VALUES
 	(1, 'admin', '$2y$10$UrGSvHTWm8.ZK4BzPmo8iuqsK6XF5RfHay6ooC5D50y/nShon5wqe', 'Area', 'Sistemas', 'images-k9zsGpqit-transformed__1_-removebg-preview (1).png', '2019-12-18');
 
@@ -51,16 +51,17 @@ CREATE TABLE IF NOT EXISTS `attendance` (
 INSERT INTO `attendance` (`id`, `employee_id`, `date`, `time_in`, `status`, `time_out`, `num_hr`) VALUES
 	(122, 26, '2023-06-30', '07:00:00', 1, '18:50:27', 4),
 	(123, 27, '2023-06-30', '00:00:00', 1, '12:00:00', 3.5),
-	(124, 26, '2023-04-11', '10:45:00', 1, '22:45:00', 4);
+	(124, 26, '2023-04-11', '10:45:00', 1, '22:45:00', 4),
+	(125, 26, '2023-07-05', '00:00:00', 1, '00:00:00', 7.5);
 
 -- Volcando estructura para tabla stazher.career
 CREATE TABLE IF NOT EXISTS `career` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name_career` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `name_career` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla stazher.career: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla stazher.career: ~5 rows (aproximadamente)
 INSERT INTO `career` (`id`, `name_career`) VALUES
 	(1, 'Ingenierira en Sistemas'),
 	(2, 'Ingeniería en Telecomunicaciones'),
@@ -77,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `cashadvance` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla stazher.cashadvance: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla stazher.cashadvance: ~1 rows (aproximadamente)
 INSERT INTO `cashadvance` (`id`, `date_advance`, `employee_id`, `amount`) VALUES
 	(1, '2020-01-07', '25', 50000);
 
@@ -89,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `deductions` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla stazher.deductions: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla stazher.deductions: ~1 rows (aproximadamente)
 INSERT INTO `deductions` (`id`, `description`, `amount`) VALUES
 	(5, 'Pago de EPS 4%', 2500);
 
@@ -110,40 +111,53 @@ CREATE TABLE IF NOT EXISTS `employees` (
   `institution_id` int NOT NULL,
   `modality_id` int NOT NULL,
   `career_id` int NOT NULL,
+  `licence_id` int NOT NULL,
   `photo` varchar(200) NOT NULL,
   `created_on` date NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla stazher.employees: ~3 rows (aproximadamente)
-INSERT INTO `employees` (`id`, `employee_id`, `firstname`, `lastname`, `identity_card`, `address`, `email`, `birthdate`, `contact_info`, `gender`, `position_id`, `schedule_id`, `institution_id`, `modality_id`, `career_id`, `photo`, `created_on`) VALUES
-	(26, 'ULQ014925673', 'Marco Antonio', 'Espinoza Rojas', 10909669, 'Cota Cota', 'marco@gmail.com', '1997-12-01', '75847560', 'Male', 7, 2, 1, 2, 1, '', '2023-06-30'),
-	(27, 'IBQ138462097', 'gicela ', 'mendez', 232323, 'que te importa', 'marco@maiul.com', '1998-04-30', '60628110', 'Male', 7, 5, 2, 2, 2, '', '2023-06-30'),
-	(29, 'KYS706231854', 'Christian Yoel', 'Espinoza Rojas', 121212, 'Miraflores', 'ale@gmail.com', '2023-07-11', '21212', 'Male', 7, 5, 1, 2, 4, '', '2023-07-02'),
-	(31, 'LD121213213', 'Leonardo ', 'Doria Medina', 121213213, 'Llojeta', 'leo@gmail.com', '2023-02-21', '2131231231', 'Male', 7, 5, 2, 2, 2, '', '2023-07-02');
+-- Volcando datos para la tabla stazher.employees: ~4 rows (aproximadamente)
+INSERT INTO `employees` (`id`, `employee_id`, `firstname`, `lastname`, `identity_card`, `address`, `email`, `birthdate`, `contact_info`, `gender`, `position_id`, `schedule_id`, `institution_id`, `modality_id`, `career_id`, `licence_id`, `photo`, `created_on`) VALUES
+	(26, 'ULQ014925673', 'Marco Antonio', 'Espinoza Rojas', 10909669, 'Cota Cota', 'marco@gmail.com', '1997-12-01', '75847560', 'Male', 7, 2, 1, 2, 1, 1, '', '2023-06-30'),
+	(27, 'IBQ138462097', 'gicela ', 'mendez', 477474575, '1212121', 'marco@mail.com', '1998-12-30', '21212', 'Male', 8, 2, 3, 3, 2, 2, '', '2023-06-30'),
+	(29, 'KYS706231854', 'Christian Yoel', 'Espinoza Rojas', 121212, 'Miraflores', 'ale@gmail.com', '2023-07-11', '21212', 'Male', 7, 5, 1, 2, 4, 3, '', '2023-07-02'),
+	(31, 'LD121213213', 'Leonardo ', 'Doria Medina', 121213213, 'Llojeta', 'leo@gmail.com', '2023-02-21', '2131231231', 'Male', 7, 5, 2, 2, 2, 4, '', '2023-07-02');
 
 -- Volcando estructura para tabla stazher.institution
 CREATE TABLE IF NOT EXISTS `institution` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name_institution` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla stazher.institution: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla stazher.institution: ~4 rows (aproximadamente)
 INSERT INTO `institution` (`id`, `name_institution`) VALUES
 	(1, 'Universidad Privada Franz Tamayo'),
 	(2, 'Universidad Privada del Valle'),
 	(3, 'Universidad Mayor de San Andrés '),
 	(5, 'Universidad Pública de El Alto');
 
+-- Volcando estructura para tabla stazher.licence
+CREATE TABLE IF NOT EXISTS `licence` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `reason` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `date_licence` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Volcando datos para la tabla stazher.licence: ~1 rows (aproximadamente)
+INSERT INTO `licence` (`id`, `reason`, `date_licence`) VALUES
+	(1, 'Gripe', '2023-07-04');
+
 -- Volcando estructura para tabla stazher.modality
 CREATE TABLE IF NOT EXISTS `modality` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `type_modality` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `type_modality` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla stazher.modality: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla stazher.modality: ~3 rows (aproximadamente)
 INSERT INTO `modality` (`id`, `type_modality`) VALUES
 	(1, 'Pasantia'),
 	(2, 'Practica Profesional '),
