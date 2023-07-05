@@ -47,6 +47,9 @@
           <div class="box">
             <div class="box-header with-border">
               <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i> Nuevo</a>
+              <a href="asistence_print.php" class="btn btn-success btn-sm btn-flat pull-right">
+                  <span class="glyphicon glyphicon-print"></span> Imprimir Todos
+                </a>
             </div>
             <div class="box-body">
               <table id="example1" class="table table-bordered">

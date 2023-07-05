@@ -48,8 +48,14 @@
           <div class="col-xs-12">
             <div class="box">
               <div class="box-header with-border">
-                <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i> Nuevo</a>
+
+                <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i>
+                  Nuevo</a>
+                  <a href="employee_print.php" class="btn btn-success btn-sm btn-flat pull-right">
+                  <span class="glyphicon glyphicon-print"></span> Imprimir Todos
+                </a>
               </div>
+
               <div class="box-body">
                 <table id="example1" class="table table-bordered">
                   <thead>
@@ -78,24 +84,47 @@
 
                     $query = $conn->query($sql);
                     while ($row = $query->fetch_assoc()) {
-                    ?>
+                      ?>
                       <tr>
-                        <td><?php echo $row['employee_id']; ?></td>
-                        <td><?php echo $row['firstname'] . ' ' . $row['lastname']; ?></td>
-                        <td><?php echo $row['identity_card']; ?></td>
-                        <td><?php echo $row['email']; ?></td>
-                        <td><?php echo $row['description']; ?></td>
-                        <td><?php echo $row['name_institution']; ?></td>
-                        <td><?php echo $row['type_modality']; ?></td>
-                        <td><?php echo $row['name_career']; ?></td>
-                        <td><?php echo date('M d, Y', strtotime($row['created_on'])) ?></td>
-                        <td><img src="<?php echo (!empty($row['photo'])) ? '../images/' . $row['photo'] : '../images/profile.jpg'; ?>" width="30px" height="30px"> <a href="#edit_photo" data-toggle="modal" class="pull-right photo" data-id="<?php echo $row['empid']; ?>"><span class="fa fa-edit"></span></a></td>
                         <td>
-                          <button class="btn btn-success btn-sm edit btn-flat" data-id="<?php echo $row['empid']; ?>"><i class="fa fa-edit"></i> Editar</button>
-                          <button class="btn btn-danger btn-sm delete btn-flat" data-id="<?php echo $row['empid']; ?>"><i class="fa fa-trash"></i> Eliminar</button>
+                          <?php echo $row['employee_id']; ?>
+                        </td>
+                        <td>
+                          <?php echo $row['firstname'] . ' ' . $row['lastname']; ?>
+                        </td>
+                        <td>
+                          <?php echo $row['identity_card']; ?>
+                        </td>
+                        <td>
+                          <?php echo $row['email']; ?>
+                        </td>
+                        <td>
+                          <?php echo $row['description']; ?>
+                        </td>
+                        <td>
+                          <?php echo $row['name_institution']; ?>
+                        </td>
+                        <td>
+                          <?php echo $row['type_modality']; ?>
+                        </td>
+                        <td>
+                          <?php echo $row['name_career']; ?>
+                        </td>
+                        <td>
+                          <?php echo date('M d, Y', strtotime($row['created_on'])) ?>
+                        </td>
+                        <td><img
+                            src="<?php echo (!empty($row['photo'])) ? '../images/' . $row['photo'] : '../images/profile.jpg'; ?>"
+                            width="30px" height="30px"> <a href="#edit_photo" data-toggle="modal" class="pull-right photo"
+                            data-id="<?php echo $row['empid']; ?>"><span class="fa fa-edit"></span></a></td>
+                        <td>
+                          <button class="btn btn-success btn-sm edit btn-flat" data-id="<?php echo $row['empid']; ?>"><i
+                              class="fa fa-edit"></i> Editar</button>
+                          <button class="btn btn-danger btn-sm delete btn-flat" data-id="<?php echo $row['empid']; ?>"><i
+                              class="fa fa-trash"></i> Eliminar</button>
                         </td>
                       </tr>
-                    <?php
+                      <?php
                     }
                     ?>
                   </tbody>
@@ -112,22 +141,22 @@
   </div>
   <?php include 'includes/scripts.php'; ?>
   <script>
-    $(function() {
-      $('.edit').click(function(e) {
+    $(function () {
+      $('.edit').click(function (e) {
         e.preventDefault();
         $('#edit').modal('show');
         var id = $(this).data('id');
         getRow(id);
       });
 
-      $('.delete').click(function(e) {
+      $('.delete').click(function (e) {
         e.preventDefault();
         $('#delete').modal('show');
         var id = $(this).data('id');
         getRow(id);
       });
 
-      $('.photo').click(function(e) {
+      $('.photo').click(function (e) {
         e.preventDefault();
         var id = $(this).data('id');
         getRow(id);
@@ -143,7 +172,7 @@
           id: id
         },
         dataType: 'json',
-        success: function(response) {
+        success: function (response) {
           $('.empid').val(response.empid);
           $('.employee_id').html(response.employee_id);
           $('.del_employee_name').html(response.firstname + ' ' + response.lastname);
