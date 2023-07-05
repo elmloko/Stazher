@@ -68,7 +68,7 @@
 				<form class="form-horizontal" method="POST" action="modality_delete.php">
 					<input type="hidden" id="del_modid" name="id">
 					<div class="text-center">
-						<p>ELIMINAR MODALIDA</p>
+						<p>ELIMINAR MODALIDAD</p>
 						<h2 id="del_modality" class="bold"></h2>
 					</div>
 			</div>

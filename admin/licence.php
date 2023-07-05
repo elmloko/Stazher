@@ -122,7 +122,9 @@
           id: id
         },
         dataType: 'json',
-        success: function(response) {
+        success: function(response) {      
+          $('#licid').val(response.id);
+          $('#del_licid').val(response.id);
           $('#datepicker_edit').val(response.date);
           $('#licence_date').html(response.date);
           $('#edit_date_licence').val(response.date_licence);
@@ -132,6 +134,7 @@
           $('#edit_licence_id').val(response.licence_id);
           $('#employee_name').html(response.firstname + ' ' + response.lastname);
           $('#del_employee_id').val(response.employee_id);
+          $('#del_reason').val(response.reason);
           $('#del_employee_name').html(response.firstname + ' ' + response.lastname);
         }
       });

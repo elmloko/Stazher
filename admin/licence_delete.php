@@ -15,6 +15,6 @@
 		$_SESSION['error'] = 'Select item to delete first';
 	}
 
-	header('location: attendance.php');
+	header('location: licence.php');
 	
 ?>
