@@ -1,14 +1,15 @@
-<?php 
-	include 'includes/session.php';
+<?php
+include 'includes/session.php';
 
-	if(isset($_POST['id'])){
-		$id = $_POST['id'];
-		$sql = "SELECT e.employee_id, e.firstname, e.lastname, l.reason, l.date_licence
-		FROM employees AS e
-		JOIN licence AS l ON e.licence_id = l.id;";
-		$query = $conn->query($sql);
-		$row = $query->fetch_assoc();
+if(isset($_POST['id'])){
+    $id = $_POST['id'];
+    $sql = "SELECT l.*, e.employee_id AS empid, e.firstname, e.lastname
+            FROM licence l
+            LEFT JOIN employees e ON e.licence_id = l.employee_id
+            WHERE l.id = '$id'";
+    $query = $conn->query($sql);
+    $row = $query->fetch_assoc();
 
-		echo json_encode($row);
-	}
+    echo json_encode($row);
+}
 ?>

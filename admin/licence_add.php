@@ -2,22 +2,23 @@
 include 'includes/session.php';
 
 if(isset($_POST['add'])){
-  $title = $_POST['title'];
-  $reason = $_POST['reason'];
-  $dateLicence = $_POST['date_licence'];
+    $reason = $_POST['reason'];
+    $date_licence = $_POST['date_licence'];
+    $employee_id = $_POST['employee_id'];
 
-  // Insertar los datos en la base de datos
-  $sql = "INSERT INTO licence (employee_id, reason, date_licence) VALUES ('$title')";
-  
-  if($conn->query($sql)){
-    $_SESSION['success'] = 'Position added successfully';
-  }
-  else{
-    $_SESSION['error'] = $conn->error;
-  }
-}	
+    $sql = "INSERT INTO licence (reason, date_licence, employee_id)
+            VALUES ('$reason', '$date_licence', (SELECT licence_id FROM employees WHERE employee_id = '$employee_id'))";
 
+    if ($conn->query($sql)) {
+        $_SESSION['success'] = 'Licencia creada exitosamente';
+    } else {
+        $_SESSION['error'] = 'Rellene el formulario de edición primero';
+    }
+}
 
 header('location: licence.php');
-
 ?>
+
+
+
+

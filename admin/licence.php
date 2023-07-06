@@ -12,11 +12,11 @@
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
-          Licencia
+          Licencias Pasantes
         </h1>
         <ol class="breadcrumb">
           <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-          <li class="active">Licencia</li>
+          <li class="active">Licencias</li>
         </ol>
       </section>
       <!-- Main content -->
@@ -48,6 +48,9 @@
             <div class="box">
               <div class="box-header with-border">
                 <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i> Nuevo</a>
+                <a href="asistence_print.php" class="btn btn-success btn-sm btn-flat pull-right">
+                  <span class="glyphicon glyphicon-print"></span> Imprimir Todos
+                </a>
               </div>
               <div class="box-body">
                 <table id="example1" class="table table-bordered">
@@ -55,36 +58,36 @@
                     <th class="hidden"></th>
                     <th>ID Pasante</th>
                     <th>Nombre</th>
+                    <th>Fecha Licencia</th>
                     <th>Razon o Motivo</th>
-                    <th>Fecha</th>
                     <th>Acción</th>
                   </thead>
                   <tbody>
-  <?php
-    $sql = "SELECT e.firstname, e.lastname, e.employee_id, l.reason, l.date_licence
-    FROM employees e
-    INNER JOIN licence l ON e.licence_id = l.id";
-        
-    $query = $conn->query($sql);
-    while($row = $query->fetch_assoc()){
-      echo "
-        <tr>
-          <td class='hidden'></td>
-          <td>".$row['employee_id']."</td>
-          <td>".$row['firstname'].' '.$row['lastname']."</td>
-          <td>".$row['reason']."</td>
-          <td>".$row['date_licence']."</td>
-          <td>
-            <button class='btn btn-success btn-sm btn-flat edit' data-id='".$row['employee_id']."'><i class='fa fa-edit'></i> Editar</button>
-            <button class='btn btn-danger btn-sm btn-flat delete' data-id='".$row['employee_id']."'><i class='fa fa-trash'></i> Eliminar</button>
-          </td>
-        </tr>
-      ";
-    }
-  ?>
+                    <?php
+                    $sql = "SELECT l.*, e.employee_id AS empid, e.firstname, e.lastname
+                    FROM licence l
+                    LEFT JOIN employees e ON e.licence_id = l.employee_id
+                    ORDER BY l.date_licence DESC";
+                    $query = $conn->query($sql);
+                    while ($row = $query->fetch_assoc()) {
+                      echo "
+                    <tr>
+                        <td class='hidden'></td>
+                        <td>" . $row['empid'] . "</td>
+                        <td>" . $row['firstname'] . ' ' . $row['lastname'] . "</td>
+                        <td>" . $row['reason'] . "</td>
+                        <td>" . $row['date_licence'] . "</td>
+                        <td>
+                            <button class='btn btn-success btn-sm btn-flat edit' data-id='" . $row['empid'] . "'><i class='fa fa-edit'></i> Editar</button>
+                            <button class='btn btn-danger btn-sm btn-flat delete' data-id='" . $row['empid'] . "'><i class='fa fa-trash'></i> Eliminar</button>
+                        </td>
+                    </tr>
+                    
+                ";
+                    }
 
+                    ?>
                   </tbody>
-
                 </table>
               </div>
             </div>
@@ -98,48 +101,42 @@
   </div>
   <?php include 'includes/scripts.php'; ?>
   <script>
-    $(function() {
-      $('.edit').click(function(e) {
-        e.preventDefault();
-        $('#edit').modal('show');
-        var id = $(this).data('id');
-        getRow(id);
-      });
-
-      $('.delete').click(function(e) {
-        e.preventDefault();
-        $('#delete').modal('show');
-        var id = $(this).data('id');
-        getRow(id);
-      });
+  $(function() {
+    $('.edit').click(function(e) {
+      e.preventDefault();
+      $('#edit').modal('show');
+      var id = $(this).data('id');
+      getRow(id);
     });
 
-    function getRow(id) {
-      $.ajax({
-        type: 'POST',
-        url: 'licence_row.php',
-        data: {
-          id: id
-        },
-        dataType: 'json',
-        success: function(response) {      
-          $('#licid').val(response.id);
-          $('#del_licid').val(response.id);
-          $('#datepicker_edit').val(response.date);
-          $('#licence_date').html(response.date);
-          $('#edit_date_licence').val(response.date_licence);
-          $('#edit_reason').val(response.reason);
-          $('#edit_employee_id').val(response.employee_id);
-          $('#employee').val(response.employee_id);
-          $('#edit_licence_id').val(response.licence_id);
-          $('#employee_name').html(response.firstname + ' ' + response.lastname);
-          $('#del_employee_id').val(response.employee_id);
-          $('#del_reason').val(response.reason);
-          $('#del_employee_name').html(response.firstname + ' ' + response.lastname);
-        }
-      });
-    }
-  </script>
+    $('.delete').click(function(e) {
+      e.preventDefault();
+        var id = $(this).data('id');
+        $('#del_empid').val(id);
+        $('#delete').modal('show');
+    });
+  });
+
+  function getRow(id) {
+    $.ajax({
+      type: 'POST',
+      url: 'licence_row.php',
+      data: {
+        id: id
+      },
+      dataType: 'json',
+      success: function(response) {
+        $('#empid').val(response.empid);
+        $('#licence').html(response.licence_id);
+        $('#edit_reason').val(response.reason);
+        $('#edit_date_licence').val(response.date_licence);
+        $('#employee_name').html(response.firstname + ' ' + response.lastname);
+        $('#del_employee_id').val(response.employee_id);
+        $('#del_empid').val(response.empid);
+      }
+    });
+  }
+</script>
 </body>
 
 </html>
