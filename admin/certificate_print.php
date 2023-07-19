@@ -36,8 +36,15 @@ if (isset($_GET['empid'])) {
 
     // Establecer el contenido de la carta
     $content = '
-    <center>   
-    <div>
+    <style type="text/css">
+    .contenedor {
+      text-align: center;
+    }
+    .centrado {
+      display: inline-block;
+    }
+    </style>
+    <div class="contenedor"> 
     <br>
     <h1 align="center"><u>CERTIFICADO DE PRACTICA PROFESIONAL</u></h1>
     <br>
@@ -52,7 +59,7 @@ if (isset($_GET['empid'])) {
     <p>Es cuanto tengo a bien certificar en honor a la verdad, para fines consiguientes.</p>
     <br>
     <p align="right">La Paz, Fecha: '.date('d').' de '.date('F').' del '.date('Y').'</p>
-    </div></center>';
+    </div>';
 
     
 
