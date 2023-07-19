@@ -109,5 +109,5 @@ $content .= '
 $content .= generateRow($conn);
 $content .= '</table>';
 $pdf->writeHTML($content);
-$pdf->Output('schedule.pdf', 'I');
+$pdf->Output('Empleados.pdf', 'I');
 ?>

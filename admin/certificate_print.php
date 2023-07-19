@@ -36,18 +36,31 @@ if (isset($_GET['empid'])) {
 
     // Establecer el contenido de la carta
     $content = '
-    <center><h1>CERTIFICADO DE PRACTICA PROFESIONAL</h1></center>
-    <p>El suscrito <b>Lic. Boris Mario Miranda Velasco </b> Director Administrativo Financiero de la Agencia Boliviana de Correos - AGBC, en uso de las atribuciones conferidas por Ley.</p><br>
+    <center>   
+    <div>
+    <br>
+    <h1 align="center"><u>CERTIFICADO DE PRACTICA PROFESIONAL</u></h1>
+    <br>
+    <p>El suscrito <b>Lic. Boris Mario Miranda Velasco</b>, Director Administrativo Financiero de la Agencia Boliviana de Correos - AGBC, en uso de las atribuciones conferidas por Ley.</p><br>
     <h2><b>CERTIFICA A QUIEN CORRESPONDA:</b></h2>
-    <p>Que el Sr.: ' . $employee['employee_id'] . ' con Cedula de Identidad N° ' . $employee['identity_card'] . ' expedido en la cuidad de La Paz, realizo su ' . $employee['type_modality'] . ' en la ' . $employee['description'] . ' - de nuestra institucion, cumpliendo una carga horaria acumulada de ' . $employee['totalHours'] . '  horas de trabajo, con fecha de inicio ' . $employee['created_on'] . ' desde el</p>
-    <p>Nombre del empleado: ' . $employee['firstname'] . ' ' . $employee['lastname'] . '</p>
-    <p>Fecha: ' . date('Y-m-d') . '</p>';
+    <p>Que el <b>Sr./Sra.: ' . $employee['firstname'] . ' ' . $employee['lastname']. '</b>, con Cedula de Identidad <b>N° ' . $employee['identity_card'] . ' </b> expedido en la cuidad de La Paz, realizó su ' . $employee['type_modality'] . ' en la ' . $employee['description'] . ' - de nuestra institución, cumpliendo una carga horaria acumulada de ' . $employee['totalHours'] . ' horas de trabajo, con fecha de inicio desde el ' . $employee['created_on'] . ' hasta el  .</p>
+    <br>
+    <p>Durante su permanencia en la Agencia, el Sr./Sra.: ' . $employee['firstname'] . ' ' . $employee['lastname']. ' ha demostrado excelente aptitud, responsabilidad, puntualidad y colaboración en el desempeño de las funciones asignadas, desarrollando un alto grado de compromiso con la Agencia Boliviana de Correos - AGBC.</p>
+    <br>
+    <p>Exhortamos al estudiante a continuar con ese mismo espíritu, para bien personal y su respectiva proyección profesional, augurándole por nuestra parte permanente éxito.</p>
+    <br>
+    <p>Es cuanto tengo a bien certificar en honor a la verdad, para fines consiguientes.</p>
+    <br>
+    <p align="right">La Paz, Fecha: '.date('d').' de '.date('F').' del '.date('Y').'</p>
+    </div></center>';
+
+    
 
     // Escribir el contenido en el PDF
     $pdf->writeHTML($content, true, false, true, false, '');
 
     // Generar el archivo PDF y enviarlo al navegador para su descarga
-    $pdf->Output('carta_certificado.pdf', 'D');
+    $pdf->Output('carta_certificado.pdf', 'I');
 } else {
     // Redirigir si no se proporciona el parámetro empid
     header('Location: index.php');
