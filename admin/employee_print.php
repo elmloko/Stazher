@@ -52,7 +52,7 @@ LEFT JOIN (
   // Cálculo de la suma de horas
 // Cálculo de la suma de horas
   $sqlAttendance = "SELECT attendance.employee_id AS empid, 
-                         SUM(TIME_TO_SEC(TIMEDIFF(attendance.time_out, attendance.time_in))) AS totalHours 
+                         SUM(SEC_TO_TIME(TIMEDIFF(attendance.time_out, attendance.time_in))) AS totalHours 
                   FROM attendance 
                   GROUP BY attendance.employee_id";
   $queryAttendance = $conn->query($sqlAttendance);

@@ -1,5 +1,7 @@
-<?php include 'includes/session.php'; ?>
-<?php include 'includes/header.php'; ?>
+<?php
+include 'includes/session.php';
+include 'includes/header.php';
+?>
 
 <body class="hold-transition skin-blue sidebar-mini">
   <div class="wrapper">
@@ -47,7 +49,8 @@
           <div class="col-xs-12">
             <div class="box">
               <div class="box-header with-border">
-                <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i> Nuevo</a>
+                <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i>
+                  Nuevo</a>
                 <a href="asistence_print.php" class="btn btn-success btn-sm btn-flat pull-right">
                   <span class="glyphicon glyphicon-print"></span> Imprimir Todos
                 </a>
@@ -58,15 +61,15 @@
                     <th class="hidden"></th>
                     <th>ID Pasante</th>
                     <th>Nombre</th>
-                    <th>Fecha Licencia</th>
                     <th>Razon o Motivo</th>
+                    <th>Fecha Licencia</th>
                     <th>Acción</th>
                   </thead>
                   <tbody>
                     <?php
                     $sql = "SELECT l.*, e.employee_id AS empid, e.firstname, e.lastname
                     FROM licence l
-                    LEFT JOIN employees e ON e.licence_id = l.employee_id
+                    LEFT JOIN employees e ON e.licence_id = l.id
                     ORDER BY l.date_licence DESC";
                     $query = $conn->query($sql);
                     while ($row = $query->fetch_assoc()) {
@@ -82,10 +85,8 @@
                             <button class='btn btn-danger btn-sm btn-flat delete' data-id='" . $row['empid'] . "'><i class='fa fa-trash'></i> Eliminar</button>
                         </td>
                     </tr>
-                    
                 ";
                     }
-
                     ?>
                   </tbody>
                 </table>
@@ -101,42 +102,44 @@
   </div>
   <?php include 'includes/scripts.php'; ?>
   <script>
-  $(function() {
-    $('.edit').click(function(e) {
-      e.preventDefault();
-      $('#edit').modal('show');
-      var id = $(this).data('id');
-      getRow(id);
-    });
+    $(function () {
+      $('.edit').click(function (e) {
+        e.preventDefault();
+        $('#edit').modal('show');
+        var id = $(this).data('id');
+        getRow(id);
+      });
 
-    $('.delete').click(function(e) {
-      e.preventDefault();
+      $('.delete').click(function (e) {
+        e.preventDefault();
         var id = $(this).data('id');
         $('#del_empid').val(id);
         $('#delete').modal('show');
+      });
     });
-  });
 
-  function getRow(id) {
-    $.ajax({
-      type: 'POST',
-      url: 'licence_row.php',
-      data: {
-        id: id
-      },
-      dataType: 'json',
-      success: function(response) {
-        $('#empid').val(response.empid);
-        $('#licence').html(response.licence_id);
-        $('#edit_reason').val(response.reason);
-        $('#edit_date_licence').val(response.date_licence);
-        $('#employee_name').html(response.firstname + ' ' + response.lastname);
-        $('#del_employee_id').val(response.employee_id);
-        $('#del_empid').val(response.empid);
-      }
-    });
-  }
-</script>
+    function getRow(id) {
+      $.ajax({
+        type: 'POST',
+        url: 'licence_row.php',
+        data: {
+          id: id
+        },
+        dataType: 'json',
+        success: function (response) {
+          $('#empid').val(response.empid);
+          $('#licence').html(response.empid);
+          $('#reason').val(response.reason);
+          $('#date_licence').val(response.date_licence);
+          $('#edit_reason').val(response.reason);
+          $('#edit_date_licence').val(response.date_licence);
+          $('#employee_name').html(response.firstname + ' ' + response.lastname);
+          $('#del_employee_id').html(response.empid);
+          $('#del_empid').val(response.empid);
+        }
+      });
+    }
+  </script>
 </body>
 
 </html>

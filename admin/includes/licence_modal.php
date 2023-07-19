@@ -53,7 +53,7 @@
 			</div>
 			<div class="modal-body">
 				<form class="form-horizontal" method="POST" action="licence_edit.php">
-					<input type="hidden" id="employee_id" name="id">
+					<input type="hidden" id="empid" name="id">
 					<div class="form-group">
 						<label for="edit_reason" class="col-sm-3 control-label">Razon o Motivo</label>
 

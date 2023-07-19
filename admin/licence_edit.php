@@ -2,19 +2,19 @@
 include 'includes/session.php';
 
 if(isset($_POST['edit'])){
-    $id = $_POST['id'];
+    $empid = $_POST['id'];
     $reason = $_POST['reason'];
     $date_licence = $_POST['date_licence'];
 
     $sql = "UPDATE licence
             SET reason = '$reason', date_licence = '$date_licence'
-            WHERE id = '$id'";
+            WHERE id = '$empid'";
 
     if($conn->query($sql)){
         $_SESSION['success'] = 'Licencia actualizada satisfactoriamente';
     }
     else{
-        $_SESSION['error'] = $conn->error;
+        $_SESSION['error'] = 'Error al actualizar la licencia: ' . $conn->error;
     }
 }
 else{

@@ -143,7 +143,7 @@
     }
 
     function printCertificate(empid) {
-      window.location.href = 'imi.php?empid=' + empid;
+      window.location.href = 'certificate_print.php?empid=' + empid;
     }
   </script>
 </body>
