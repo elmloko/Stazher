@@ -80,6 +80,7 @@
                     LEFT JOIN schedules ON schedules.id = employees.schedule_id
                     LEFT JOIN modality ON modality.id = employees.modality_id
                     LEFT JOIN institution ON institution.id = employees.institution_id
+                    LEFT JOIN area ON area.id = employees.area_id
                     LEFT JOIN career ON career.id = employees.career_id";
 
                     $query = $conn->query($sql);
@@ -99,7 +100,7 @@
                           <?php echo $row['email']; ?>
                         </td>
                         <td>
-                          <?php echo $row['description']; ?>
+                          <?php echo $row['description'] . ' - ' . $row['name_area']; ?>
                         </td>
                         <td>
                           <?php echo $row['name_institution']; ?>
@@ -183,12 +184,14 @@
           $('#edit_address').val(response.address);
           $('#edit_email').val(response.email);
           $('#edit_career').val(response.career);
+          $('#edit_area').val(response.area);
           $('#datepicker_edit').val(response.birthdate);
           $('#edit_contact').val(response.contact_info);
           $('#email_val').val(response.email).html(response.email);
           $('#gender_val').val(response.gender).html(response.gender);
           $('#position_val').val(response.position_id).html(response.description);
           $('#career_val').val(response.career_id).html(response.name_career);
+          $('#area_val').val(response.area_id).html(response.name_area);
           $('#modality_val').val(response.modality_id).html(response.type_modality);
           $('#institution_val').val(response.institution_id).html(response.name_institution);
           $('#schedule_val').val(response.schedule_id).html(response.time_in + ' - ' + response.time_out);

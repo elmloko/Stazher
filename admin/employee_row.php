@@ -10,6 +10,7 @@
         LEFT JOIN modality ON modality.id = employees.modality_id 
         LEFT JOIN institution ON institution.id = employees.institution_id 
         LEFT JOIN career ON career.id = employees.career_id 
+		LEFT JOIN area ON area.id = employees.area_id 
         WHERE employees.id = '$id'";
 		$query = $conn->query($sql);
 		$row = $query->fetch_assoc();

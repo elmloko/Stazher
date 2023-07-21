@@ -91,6 +91,25 @@
           </div>
 
           <div class="form-group">
+            <label for="position" class="col-sm-3 control-label">Area de Trabajo</label>
+
+            <div class="col-sm-9">
+              <select class="form-control" name="area" id="area" required>
+                <option value="" selected>- Seleccionar -</option>
+                <?php
+                $sql = "SELECT * FROM area";
+                $query = $conn->query($sql);
+                while ($prow = $query->fetch_assoc()) {
+                  echo "
+                              <option value='" . $prow['id'] . "'>" . $prow['name_area'] . "</option>
+                            ";
+                }
+                ?>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
             <label for="career" class="col-sm-3 control-label">Carrera Universitaria</label>
 
             <div class="col-sm-9">
@@ -270,6 +289,25 @@
                 while ($prow = $query->fetch_assoc()) {
                   echo "
                               <option value='" . $prow['id'] . "'>" . $prow['description'] . "</option>
+                            ";
+                }
+                ?>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="edit_area" class="col-sm-3 control-label">Cargo</label>
+
+            <div class="col-sm-9">
+              <select class="form-control" name="area" id="edit_area">
+                <option selected id="area_val"></option>
+                <?php
+                $sql = "SELECT * FROM area";
+                $query = $conn->query($sql);
+                while ($prow = $query->fetch_assoc()) {
+                  echo "
+                              <option value='" . $prow['id'] . "'>" . $prow['name_area'] . "</option>
                             ";
                 }
                 ?>

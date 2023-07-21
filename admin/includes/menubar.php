@@ -60,6 +60,7 @@
         <ul class="treeview-menu">
           <li><a href="schedule.php"><i class="fa fa-hourglass"></i> Horarios</a></li>
           <li><a href="position.php"><i class="fa fa-id-card-o"></i> Cargos</a></li>
+          <li><a href=" area.php"><i class="fa fa-handshake-o"></i> Areas de Trabajo</a></li>
         </ul>
       </li>
       <li class="treeview">
@@ -74,6 +75,7 @@
           <li><a href="institution.php"><i class="fa fa-suitcase"></i> Instituciones</a></li>
           <li><a href="career.php"><i class="fa fa-university""></i> Carreras Universitarias</a></li>
           <li><a href=" modality.php"><i class="fa fa-handshake-o"></i> Modalidad de Titulacion</a></li>
+          
         </ul>
       </li>
     </ul>

@@ -69,7 +69,7 @@ include 'includes/header.php';
                     <?php
                     $sql = "SELECT l.*, e.employee_id AS empid, e.firstname, e.lastname
                     FROM licence l
-                    LEFT JOIN employees e ON e.licence_id = l.id
+                    LEFT JOIN employees e ON e.id = l.employee_id
                     ORDER BY l.date_licence DESC";
                     $query = $conn->query($sql);
                     while ($row = $query->fetch_assoc()) {

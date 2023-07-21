@@ -14,10 +14,11 @@
 		$position = $_POST['position'];
 		$schedule = $_POST['schedule'];
 		$career = $_POST['career'];
+		$area = $_POST['area'];
 		$institution = $_POST['institution'];
 		$modality = $_POST['modality'];
 		
-		$sql = "UPDATE employees SET firstname = '$firstname', lastname = '$lastname', identity_card = '$identity_card', email = '$email', address = '$address', birthdate = '$birthdate', contact_info = '$contact', gender = '$gender', position_id = '$position', schedule_id = '$schedule', career_id = '$career', institution_id = '$institution', modality_id = '$modality' WHERE id = '$empid'";
+		$sql = "UPDATE employees SET firstname = '$firstname', lastname = '$lastname', identity_card = '$identity_card', email = '$email', address = '$address', birthdate = '$birthdate', contact_info = '$contact', gender = '$gender', position_id = '$position', schedule_id = '$schedule', career_id = '$career', area_id = '$area', institution_id = '$institution', modality_id = '$modality' WHERE id = '$empid'";
 		
 		if($conn->query($sql)){
 			$_SESSION['success'] = 'Pasante actualizado con éxito';
