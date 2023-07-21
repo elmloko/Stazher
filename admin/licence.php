@@ -128,7 +128,6 @@ include 'includes/header.php';
         dataType: 'json',
         success: function (response) {
           $('#empid').val(response.empid);
-          $('#licence').html(response.empid);
           $('#reason').val(response.reason);
           $('#date_licence').val(response.date_licence);
           $('#edit_reason').val(response.reason);

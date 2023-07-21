@@ -6,7 +6,7 @@ if(isset($_POST['add'])){
     $date_licence = $_POST['date_licence'];
     $id = $_POST['id'];
 
-    $sql = "INSERT INTO licence (reason, date_licence, id)
+    $sql = "INSERT INTO licence (reason, date_licence, employee_id)
             VALUES ('$reason', '$date_licence', (SELECT id FROM employees WHERE id = '$id'))";
 
     if ($conn->query($sql)) {
