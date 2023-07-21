@@ -51,7 +51,7 @@ include 'includes/header.php';
               <div class="box-header with-border">
                 <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i>
                   Nuevo</a>
-                <a href="asistence_print.php" class="btn btn-success btn-sm btn-flat pull-right">
+                <a href="licence_print.php" class="btn btn-success btn-sm btn-flat pull-right">
                   <span class="glyphicon glyphicon-print"></span> Imprimir Todos
                 </a>
               </div>
