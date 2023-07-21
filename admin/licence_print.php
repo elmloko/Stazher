@@ -45,7 +45,7 @@ $pdf->AddPage();
 $content = '';
 $content .= '
       	<h2 align="center">Agencia Boliviana de Correos</h2>
-      	<h3 align="center">Asistencia de Pasantes</h3>
+      	<h3 align="center">Licencia de Pasantes</h3>
       	<table border="1" cellspacing="0" cellpadding="3">  
            <tr>  
               <th width="15%" align="center"><b>Codigo de Pasante</b></th>
