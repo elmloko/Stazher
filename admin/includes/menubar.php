@@ -59,21 +59,21 @@
         </a>
         <ul class="treeview-menu">
           <li><a href="schedule.php"><i class="fa fa-hourglass"></i> Horarios</a></li>
-          <li><a href="position.php"><i class="fa fa-id-card-o"></i> Cargos</a></li>
-          <li><a href=" area.php"><i class="fa fa-handshake-o"></i> Areas de Trabajo</a></li>
+          <li><a href="position.php"><i class="fa fa-id-card-o"></i> Areas de Trabajo</a></li>
+          <li><a href=" area.php"><i class="fa fa-handshake-o"></i> Unidades Organizacionales</a></li>
         </ul>
       </li>
       <li class="treeview">
         <a href="#">
           <i class="fa fa-users"></i>
-          <span>Universidades</span>
+          <span>Casas Superiores de Estudio</span>
           <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
           </span>
         </a>
         <ul class="treeview-menu">
-          <li><a href="institution.php"><i class="fa fa-suitcase"></i> Instituciones</a></li>
-          <li><a href="career.php"><i class="fa fa-university""></i> Carreras Universitarias</a></li>
+          <li><a href="institution.php"><i class="fa fa-suitcase"></i> Universidades o Instituto</a></li>
+          <li><a href="career.php"><i class="fa fa-university""></i> Carreras</a></li>
           <li><a href=" modality.php"><i class="fa fa-handshake-o"></i> Modalidad de Titulacion</a></li>
           
         </ul>

@@ -11,11 +11,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-      Areas de Trabajo
+      Unidades Organizacionales
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-        <li class="active">Areas</li>
+        <li class="active">Unidades</li>
       </ol>
     </section>
     <!-- Main content -->
@@ -51,7 +51,7 @@
             <div class="box-body">
               <table id="example1" class="table table-bordered">
                 <thead>
-                  <th>Título de la Area</th>
+                  <th>Unidad</th>
                   <!-- <th>Índice por hora</th> -->
                   <th>Acción</th>
                 </thead>

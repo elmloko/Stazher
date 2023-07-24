@@ -51,7 +51,7 @@
             <div class="box-body">
               <table id="example1" class="table table-bordered">
                 <thead>
-                  <th>Carreras Universitarias</th>
+                  <th>Carreras</th>
                   <!-- <th>Índice por hora</th> -->
                   <th>Acción</th>
                 </thead>

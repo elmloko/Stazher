@@ -110,7 +110,7 @@
           </div>
 
           <div class="form-group">
-            <label for="career" class="col-sm-3 control-label">Carrera Universitaria</label>
+            <label for="career" class="col-sm-3 control-label">Carrera</label>
 
             <div class="col-sm-9">
               <select class="form-control" name="career" id="career" required>
@@ -316,7 +316,7 @@
           </div>
 
           <div class="form-group">
-            <label for="edit_career" class="col-sm-3 control-label">Carrera Universitaria</label>
+            <label for="edit_career" class="col-sm-3 control-label">Carrera </label>
 
             <div class="col-sm-9">
               <select class="form-control" name="career" id="edit_career" required>

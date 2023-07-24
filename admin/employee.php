@@ -64,9 +64,9 @@
                     <th>Carnet de Identidad</th>
                     <th>Correo Electronico</th>
                     <th>Dependecia</th>
-                    <th>Institucion</th>
+                    <th>Casas Superiores de Estudio/Instituto</th>
                     <th>Modalidad</th>
-                    <th>Carrera Universitaria</th>
+                    <th>Carrera</th>
                     <th>Miembro Desde</th>
                     <th>Foto</th>
                     <th>Acción</th>
