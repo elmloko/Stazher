@@ -3,10 +3,9 @@
 
 	if(isset($_POST['edit'])){
 		$id = $_POST['id'];
-		$title = $_POST['title'];
 		$type_modality = $_POST['type_modality'];
 		// $sql = "UPDATE position SET description = '$title', rate = '$rate' WHERE id = '$id'";
-		$sql = "UPDATE modality SET type_modality = '$title' WHERE id = '$id'";
+		$sql = "UPDATE modality SET type_modality = '$type_modality' WHERE id = '$id'";
 		if($conn->query($sql)){
 			$_SESSION['success'] = 'Modalidad Actualizada Satisfactoriamente';
 		}
