@@ -32,8 +32,18 @@ if(isset($_POST['add'])){
             $squery = $conn->query($sql);
             $scherow = $squery->fetch_assoc();
             $logstatus = ($time_in > $scherow['time_in']) ? 0 : 1;
-            
-            $sql = "INSERT INTO attendance (employee_id, date, time_in, time_out, status, num_hr) VALUES ('$emp', '$date', '$time_in', '$time_out', '$logstatus', 0)";
+
+            // Determine status2 based on time_out
+            $status2 = 0; // Default value for normal attendance
+            if ($time_out < $scherow['time_out']) {
+                // Employee had an early exit
+                $status2 = 1;
+            } elseif ($time_out > $scherow['time_out']) {
+                // Employee worked extra time
+                $status2 = 2;
+            }
+
+            $sql = "INSERT INTO attendance (employee_id, date, time_in, time_out, status, status2, num_hr) VALUES ('$emp', '$date', '$time_in', '$time_out', '$logstatus', '$status2', 0)";
             if($conn->query($sql)){
                 $_SESSION['success'] = 'Attendance added successfully';
                 $id = $conn->insert_id;

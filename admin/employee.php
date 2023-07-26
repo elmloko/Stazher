@@ -63,6 +63,8 @@
                     <th>Nombre Completo</th>
                     <th>Carnet de Identidad</th>
                     <th>Correo Electronico</th>
+                    <th>Numero de telefono</th>
+                    <th>Direccion de Domicilio</th>
                     <th>Dependecia</th>
                     <th>Casas Superiores de Estudio/Instituto</th>
                     <th>Modalidad</th>
@@ -98,6 +100,12 @@
                         </td>
                         <td>
                           <?php echo $row['email']; ?>
+                        </td>
+                        <td>
+                          <?php echo $row['contact_info']; ?>
+                        </td>
+                        <td>
+                          <?php echo $row['address']; ?>
                         </td>
                         <td>
                           <?php echo $row['description'] . ' - ' . $row['name_area']; ?>

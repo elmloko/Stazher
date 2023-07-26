@@ -64,10 +64,14 @@
                 </thead>
                 <tbody>
                   <?php
-                    $sql = "SELECT *, employees.employee_id AS empid, attendance.id AS attid FROM attendance LEFT JOIN employees ON employees.id=attendance.employee_id ORDER BY attendance.date DESC, attendance.time_in DESC";
+                    $sql = "SELECT *, employees.employee_id AS empid, attendance.id AS attid, 
+                                    IF(attendance.status2 = 1, '<span class=\"label label-danger pull-right\">temprano</span>', '<span class=\"label label-warning pull-right\">extra</span>') AS status2_label
+                            FROM attendance 
+                            LEFT JOIN employees ON employees.id=attendance.employee_id 
+                            ORDER BY attendance.date DESC, attendance.time_in DESC";
                     $query = $conn->query($sql);
                     while($row = $query->fetch_assoc()){
-                      $status = ($row['status'])?'<span class="label label-warning pull-right">a tiempo</span>':'<span class="label label-danger pull-right">tarde</span>';
+                      $status = ($row['status'])?'<span class="label label-success pull-right">temprano</span>':'<span class="label label-danger pull-right">tarde</span>';
                       echo "
                         <tr>
                           <td class='hidden'></td>
@@ -75,7 +79,7 @@
                           <td>".$row['firstname'].' '.$row['lastname']."</td>
                           <td>".date('M d, Y', strtotime($row['date']))."</td>
                           <td>".date('h:i A', strtotime($row['time_in'])).$status."</td>
-                          <td>".date('h:i A', strtotime($row['time_out']))."</td>
+                          <td>".date('h:i A', strtotime($row['time_out'])).$row['status2_label']."</td>
                           <td>
                             <button class='btn btn-success btn-sm btn-flat edit' data-id='".$row['attid']."'><i class='fa fa-edit'></i> Editar</button>
                             <button class='btn btn-danger btn-sm btn-flat delete' data-id='".$row['attid']."'><i class='fa fa-trash'></i> Eliminar</button>
