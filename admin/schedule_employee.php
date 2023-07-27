@@ -1,5 +1,7 @@
-<?php include 'includes/session.php'; ?>
-<?php include 'includes/header.php'; ?>
+<?php
+include 'includes/session.php';
+include 'includes/header.php';
+?>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
@@ -66,7 +68,16 @@
                         <tr>
                           <td>".$row['employee_id']."</td>
                           <td>".$row['firstname'].' '.$row['lastname']."</td>
-                          <td>".date('h:i A', strtotime($row['time_in'])).' - '.date('h:i A', strtotime($row['time_out']))."</td>
+                          <td>";
+                      
+                      // Verificar si los campos time_in y time_out no son nulos antes de formatear las fechas
+                      if ($row['time_in'] && $row['time_out']) {
+                        echo date('h:i A', strtotime($row['time_in'])) . ' - ' . date('h:i A', strtotime($row['time_out']));
+                      } else {
+                        echo "Horarios no definidos";
+                      }
+
+                      echo "</td>
                           <td>
                             <button class='btn btn-success btn-sm edit btn-flat' data-id='".$row['empid']."'><i class='fa fa-edit'></i> Editar</button>
                           </td>
