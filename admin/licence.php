@@ -129,7 +129,7 @@ include 'includes/header.php';
         },
         dataType: 'json',
         success: function(response) {
-          $('#empid').val(response.empid);
+          $('#empid').val(response.id);
           $('#reason').val(response.reason);
           $('#date_licence').val(response.date_licence);
           $('#edit_reason').val(response.reason);

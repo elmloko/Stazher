@@ -6,7 +6,7 @@ if(isset($_POST['edit'])){
     $reason = $_POST['reason'];
     $date_absences = $_POST['date_absences'];
 
-    $sql = "UPDATE absences SET reason = '$reason', date_absences = '$date_absences' WHERE employee_id = '$id'";
+    $sql = "UPDATE absences SET reason = '$reason', date_absences = '$date_absences' WHERE id =  $id";
 
     if($conn->query($sql)){
         $_SESSION['success'] = 'Licencia actualizada satisfactoriamente';

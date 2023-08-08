@@ -129,11 +129,11 @@ include 'includes/header.php';
         },
         dataType: 'json',
         success: function(response) {
-          $('#empid').val(response.empid);
+          $('#empid').val(response.id);
           $('#reason').val(response.reason);
           $('#date_absences').val(response.date_absences);
           $('#edit_reason').val(response.reason);
-          $('#edit_date_licence').val(response.date_absences);
+          $('#edit_date_absences').val(response.date_absences);
           $('#employee_name').html(response.firstname + ' ' + response.lastname);
           $('#del_employee_id').html(response.empid);
           $('#del_empid').val(response.id);
