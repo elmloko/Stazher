@@ -4,9 +4,9 @@ include 'includes/session.php';
 if(isset($_POST['edit'])){
     $id = $_POST['id'];
     $reason = $_POST['reason'];
-    $date_licence = $_POST['date_licence'];
+    $date_absences = $_POST['date_absences'];
 
-    $sql = "UPDATE licence SET reason = '$reason', date_licence = '$date_licence' WHERE employee_id = '$id'";
+    $sql = "UPDATE absences SET reason = '$reason', date_absences = '$date_absences' WHERE employee_id = '$id'";
 
     if($conn->query($sql)){
         $_SESSION['success'] = 'Licencia actualizada satisfactoriamente';
@@ -19,5 +19,5 @@ else{
     $_SESSION['error'] = 'Rellene el formulario de edición primero';
 }
 
-header('location: licence.php');
+header('location: absences.php');
 ?>

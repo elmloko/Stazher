@@ -81,8 +81,8 @@ include 'includes/header.php';
                         <td>" . $row['reason'] . "</td>
                         <td>" . $row['date_licence'] . "</td>
                         <td>
-                            <button class='btn btn-success btn-sm btn-flat edit' data-id='" . $row['empid'] . "'><i class='fa fa-edit'></i> Editar</button>
-                            <button class='btn btn-danger btn-sm btn-flat delete' data-id='" . $row['empid'] . "'><i class='fa fa-trash'></i> Eliminar</button>
+                            <button class='btn btn-success btn-sm btn-flat edit' data-id='" . $row['id'] . "'><i class='fa fa-edit'></i> Editar</button>
+                            <button class='btn btn-danger btn-sm btn-flat delete' data-id='" . $row['id'] . "'><i class='fa fa-trash'></i> Eliminar</button>
                         </td>
                     </tr>
                 ";
@@ -102,19 +102,21 @@ include 'includes/header.php';
   </div>
   <?php include 'includes/scripts.php'; ?>
   <script>
-    $(function () {
-      $('.edit').click(function (e) {
+    $(function() {
+      $('.edit').click(function(e) {
         e.preventDefault();
         $('#edit').modal('show');
         var id = $(this).data('id');
+        $('#empid').val(id);
         getRow(id);
       });
 
-      $('.delete').click(function (e) {
+      $('.delete').click(function(e) {
         e.preventDefault();
         var id = $(this).data('id');
-        $('#del_empid').val(id);
+        getRow(id);
         $('#delete').modal('show');
+        
       });
     });
 
@@ -126,7 +128,7 @@ include 'includes/header.php';
           id: id
         },
         dataType: 'json',
-        success: function (response) {
+        success: function(response) {
           $('#empid').val(response.empid);
           $('#reason').val(response.reason);
           $('#date_licence').val(response.date_licence);
@@ -134,7 +136,7 @@ include 'includes/header.php';
           $('#edit_date_licence').val(response.date_licence);
           $('#employee_name').html(response.firstname + ' ' + response.lastname);
           $('#del_employee_id').html(response.empid);
-          $('#del_empid').val(response.empid);
+          $('#del_empid').val(response.id);
         }
       });
     }

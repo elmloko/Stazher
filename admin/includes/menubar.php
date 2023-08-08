@@ -27,6 +27,7 @@
         <ul class="treeview-menu">
           <li><a href="attendance.php"><i class="fa fa-calendar"></i> <span>Asistencia</span></a></li>
           <li><a href="licence.php"><i class="fa fa-suitcase"></i> Licencias</a></li>
+          <li><a href="absences.php"><i class="fa fa-suitcase"></i> Faltas</a></li>
         </ul>
       </li>
       <li class="treeview">

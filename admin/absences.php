@@ -1,5 +1,7 @@
-<?php include 'includes/session.php'; ?>
-<?php include 'includes/header.php'; ?>
+<?php
+include 'includes/session.php';
+include 'includes/header.php';
+?>
 
 <body class="hold-transition skin-blue sidebar-mini">
   <div class="wrapper">
@@ -12,11 +14,11 @@
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
-          Asistencia
+          Faltas Pasantes
         </h1>
         <ol class="breadcrumb">
           <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-          <li class="active">Asistencia</li>
+          <li class="active">Faltas</li>
         </ol>
       </section>
       <!-- Main content -->
@@ -47,8 +49,9 @@
           <div class="col-xs-12">
             <div class="box">
               <div class="box-header with-border">
-                <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i> Nuevo</a>
-                <a href="asistence_print.php" class="btn btn-success btn-sm btn-flat pull-right">
+                <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i>
+                  Nuevo</a>
+                <a href="absences_print.php" class="btn btn-success btn-sm btn-flat pull-right">
                   <span class="glyphicon glyphicon-print"></span> Imprimir Todos
                 </a>
               </div>
@@ -58,39 +61,31 @@
                     <th class="hidden"></th>
                     <th>ID Pasante</th>
                     <th>Nombre</th>
-                    <th>Fecha</th>
-                    <th>Hora Entrada</th>
-                    <th>Hora Salida</th>
+                    <th>Razon o Motivo</th>
+                    <th>Fecha Falta</th>
                     <th>Acción</th>
                   </thead>
                   <tbody>
                     <?php
-                    $sql = "SELECT *, employees.employee_id AS empid, attendance.id AS attid, 
-                IF(attendance.status2 = 1, '<span class=\"label label-danger pull-right\">temprano</span>', '<span class=\"label label-warning pull-right\">extra</span>') AS status2_label
-        FROM attendance 
-        LEFT JOIN employees ON employees.id=attendance.employee_id 
-        ORDER BY attendance.date DESC, attendance.time_in DESC";
+                    $sql = "SELECT a.*, e.employee_id AS empid, e.firstname, e.lastname
+                    FROM absences a
+                    LEFT JOIN employees e ON e.id = a.employee_id
+                    ORDER BY a.date_absences DESC";
                     $query = $conn->query($sql);
                     while ($row = $query->fetch_assoc()) {
-                      $status = ($row['status']) ? '<span class="label label-success pull-right">temprano</span>' : '<span class="label label-danger pull-right">tarde</span>';
-                      $formattedDate = $row['date'] ? date('M d, Y', strtotime($row['date'])) : '';
-                      $formattedTimeIn = $row['time_in'] ? date('h:i A', strtotime($row['time_in'])) . $status : '';
-                      $formattedTimeOut = $row['time_out'] ? date('h:i A', strtotime($row['time_out'])) . $row['status2_label'] : '';
-
                       echo "
-    <tr>
-      <td class='hidden'></td>
-      <td>" . $row['empid'] . "</td>
-      <td>" . $row['firstname'] . ' ' . $row['lastname'] . "</td>
-      <td>" . $formattedDate . "</td>
-      <td>" . $formattedTimeIn . "</td>
-      <td>" . $formattedTimeOut . "</td>
-      <td>
-        <button class='btn btn-success btn-sm btn-flat edit' data-id='" . $row['attid'] . "'><i class='fa fa-edit'></i> Editar</button>
-        <button class='btn btn-danger btn-sm btn-flat delete' data-id='" . $row['attid'] . "'><i class='fa fa-trash'></i> Eliminar</button>
-      </td>
-    </tr>
-  ";
+                    <tr>
+                        <td class='hidden'></td>
+                        <td>" . $row['empid'] . "</td>
+                        <td>" . $row['firstname'] . ' ' . $row['lastname'] . "</td>
+                        <td>" . $row['reason'] . "</td>
+                        <td>" . $row['date_absences'] . "</td>
+                        <td>
+                            <button class='btn btn-success btn-sm btn-flat edit' data-id='" . $row['id'] . "'><i class='fa fa-edit'></i> Editar</button>
+                            <button class='btn btn-danger btn-sm btn-flat delete' data-id='" . $row['id'] . "'><i class='fa fa-trash'></i> Eliminar</button>
+                        </td>
+                    </tr>
+                ";
                     }
                     ?>
                   </tbody>
@@ -103,7 +98,7 @@
     </div>
 
     <?php include 'includes/footer.php'; ?>
-    <?php include 'includes/attendance_modal.php'; ?>
+    <?php include 'includes/absences_modal.php'; ?>
   </div>
   <?php include 'includes/scripts.php'; ?>
   <script>
@@ -112,34 +107,36 @@
         e.preventDefault();
         $('#edit').modal('show');
         var id = $(this).data('id');
+        $('#empid').val(id);
         getRow(id);
       });
 
       $('.delete').click(function(e) {
         e.preventDefault();
-        $('#delete').modal('show');
         var id = $(this).data('id');
         getRow(id);
+        $('#delete').modal('show');
+        
       });
     });
 
     function getRow(id) {
       $.ajax({
         type: 'POST',
-        url: 'attendance_row.php',
+        url: 'absences_row.php',
         data: {
           id: id
         },
         dataType: 'json',
         success: function(response) {
-          $('#datepicker_edit').val(response.date);
-          $('#attendance_date').html(response.date);
-          $('#edit_time_in').val(response.time_in);
-          $('#edit_time_out').val(response.time_out);
-          $('#attid').val(response.attid);
+          $('#empid').val(response.empid);
+          $('#reason').val(response.reason);
+          $('#date_absences').val(response.date_absences);
+          $('#edit_reason').val(response.reason);
+          $('#edit_date_licence').val(response.date_absences);
           $('#employee_name').html(response.firstname + ' ' + response.lastname);
-          $('#del_attid').val(response.attid);
-          $('#del_employee_name').html(response.firstname + ' ' + response.lastname);
+          $('#del_employee_id').html(response.empid);
+          $('#del_empid').val(response.id);
         }
       });
     }

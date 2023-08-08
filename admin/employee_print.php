@@ -12,6 +12,7 @@ schedules.*,
 modality.*,
 institution.*,
 career.*,
+area.*,
 IFNULL(totalHours.totalHours, 0) AS totalHours
 FROM 
 employees 
@@ -19,6 +20,7 @@ LEFT JOIN position ON position.id = employees.position_id
 LEFT JOIN schedules ON schedules.id = employees.schedule_id
 LEFT JOIN modality ON modality.id = employees.modality_id
 LEFT JOIN institution ON institution.id = employees.institution_id
+LEFT JOIN area ON area.id = employees.area_id
 LEFT JOIN career ON career.id = employees.career_id
 LEFT JOIN (
   SELECT 
@@ -39,10 +41,12 @@ LEFT JOIN (
 				<td>" . $row['lastname'] . ", " . $row['firstname'] . "</td>
                 <td>" . $row['identity_card'] . "</td>
                 <td>" . $row['email'] . "</td>
+                <td>" . $row['contact_info'] . "</td>
+                <td>" . $row['address'] . "</td>
                 <td>" . $row['name_institution'] . "</td>
                 <td>" . $row['name_career'] . "</td>
                 <td>" . $row['type_modality'] . "</td>
-                <td>" . $row['description'] . "</td>
+                <td>" . $row['description'] . " , " . $row['name_area'] . " </td>
 
 				<td>" . date('h:i A', strtotime($row['time_in'])) . ' - ' . date('h:i A', strtotime($row['time_out'])) . "</td>
         <td>" . gmdate('H:i', $row['totalHours']) . "</td>
@@ -89,20 +93,20 @@ $content = '';
 $content .= '
       	<h2 align="center">Agencia Boliviana de Correos</h2>
       	<h3 align="center">Horario de Pasantes</h3>
-      	<table border="1" cellspacing="0" cellpadding="3">  
+      	<table border="1" cellspacing="0" cellpadding="2">  
            <tr>  
-           <th width="10%" align="center"><b>Codigo de Pasante</b></th>
-           		<th width="10%" align="center"><b>Nombre Pasante</b></th>
-				<th width="10%" align="center"><b>CI</b></th> 
+                 <th width="8%" align="center"><b>Codigo de Pasante</b></th>
+             		<th width="8%" align="center"><b>Nombre Pasante</b></th>
+			        	<th width="8%" align="center"><b>CI</b></th> 
                 <th width="10%" align="center"><b>Correo Electronico</b></th>
-				<th width="10%" align="center"><b>Universidad/ Instituto</b></th>
-                <th width="10%" align="center"><b> Carrera</b></th>
-                <th width="10%" align="center"><b>Modalidad</b></th>
-
+                <th width="8%" align="center"><b>Numero de telefono</b></th>
+                <th width="8%" align="center"><b>Domicilio</b></th>
+			        	<th width="10%" align="center"><b>Universidad/ Instituto</b></th>
+                <th width="10%" align="center"><b>Carrera</b></th>
+                <th width="8%" align="center"><b>Modalidad</b></th>
                 <th width="10%" align="center"><b>Area Designada</b></th>
-
-				<th width="10%" align="center"><b>Horario</b></th>
-                <th width="10%" align="center"><b>Horas Totales</b></th>
+		        		<th width="8%" align="center"><b>Horario</b></th>
+                <th width="8%" align="center"><b>Horas Totales</b></th>
 
            </tr>  
       ';
@@ -110,4 +114,3 @@ $content .= generateRow($conn);
 $content .= '</table>';
 $pdf->writeHTML($content);
 $pdf->Output('Empleados.pdf', 'I');
-?>

@@ -134,6 +134,7 @@
           $('#attendance_date').html(response.date);
           $('#edit_time_in').val(response.time_in);
           $('#edit_time_out').val(response.time_out);
+          $('#empid').val(response.empid);
           $('#attid').val(response.attid);
           $('#employee_name').html(response.firstname + ' ' + response.lastname);
           $('#del_attid').val(response.attid);

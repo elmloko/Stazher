@@ -3,11 +3,11 @@ include 'includes/session.php';
 
 if(isset($_POST['add'])){
     $reason = $_POST['reason'];
-    $date_licence = $_POST['date_licence'];
+    $date_absences = $_POST['date_absences'];
     $id = $_POST['employee_id'];
 
-    $sql = "INSERT INTO licence (reason, date_licence, employee_id)
-            VALUES ('$reason', '$date_licence', (SELECT id FROM employees WHERE employee_id = '$id'))";
+    $sql = "INSERT INTO absences (reason, date_absences, employee_id)
+            VALUES ('$reason', '$date_absences', (SELECT id FROM employees WHERE employee_id = '$id'))";
 
     if ($conn->query($sql)) {
         $_SESSION['success'] = 'Licencia creada exitosamente';
@@ -16,7 +16,7 @@ if(isset($_POST['add'])){
     }
 }
 
-header('location: licence.php');
+header('location: absences.php');
 ?>
 
 
