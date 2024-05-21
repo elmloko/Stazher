@@ -78,8 +78,9 @@
                           <td>" . $firstname . ' ' . $lastname . "</td>
                           <td>" . gmdate('H:i', $totalHours) . "</td>
                           <td>
-                            <button class='btn btn-success btn-sm btn-flat print-certificate' data-empid='" . $empid . "'><i class='fa fa-print'></i> Imprimir Certificado</button>
-                            <a href='certificate_edit.php?empid=" . $empid . "' class='btn btn-success btn-sm btn-flat'><i class='fa fa-file-word-o'></i> Descargar Reporte</a>
+                            <button class='btn btn-primary btn-sm btn-flat add-schedule' data-empid='" . $empid . "'><i class='fa fa-clock-o'></i> Agregar Horario</button>
+                            <button class='btn btn-danger btn-sm btn-flat print-certificate' data-empid='" . $empid . "'><i class='fa fa-print'></i> Descargar en PDF</button>
+                            <a href='certificate_edit.php?empid=" . $empid . "' class='btn btn-info btn-sm btn-flat'><i class='fa fa-file-word-o'></i> Descargar en Word</a>
                           </td>
                         </tr>
                       ";
@@ -146,6 +147,14 @@
     function printCertificate(empid) {
       window.location.href = 'certificate_print.php?empid=' + empid;
     }
+    $(document).ready(function() {
+        // Manejar clic en el botón Agregar Horario
+        $('.add-schedule').click(function() {
+            var empid = $(this).data('empid');
+            // Puedes redirigir a una página donde el usuario pueda seleccionar el horario
+            window.location.href = 'add_schedule.php?empid=' + empid;
+        });
+    });
   </script>
 </body>
 
