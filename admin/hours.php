@@ -79,6 +79,7 @@
                           <td>" . gmdate('H:i', $totalHours) . "</td>
                           <td>
                             <button class='btn btn-success btn-sm btn-flat print-certificate' data-empid='" . $empid . "'><i class='fa fa-print'></i> Imprimir Certificado</button>
+                            <a href='certificate_edit.php?empid=" . $empid . "' class='btn btn-success btn-sm btn-flat'><i class='fa fa-file-word-o'></i> Descargar Reporte</a>
                           </td>
                         </tr>
                       ";
@@ -95,7 +96,6 @@
     </div>
 
     <?php include 'includes/footer.php'; ?>
-    <?php include 'includes/attendance_modal.php'; ?>
   </div>
   <?php include 'includes/scripts.php'; ?>
   <script>
