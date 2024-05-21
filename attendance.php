@@ -1,5 +1,5 @@
 <?php
-if (isset($_POST['employee'])) {
+if (isset($_POST['employee']) && isset($_POST['status'])) {
     $output = array('error' => false);
 
     include 'conn.php';
@@ -24,7 +24,6 @@ if (isset($_POST['employee'])) {
                 $output['error'] = true;
                 $output['message'] = 'Has registrado tu entrada por hoy';
             } else {
-                //updates
                 $sched = $row['schedule_id'];
                 $lognow = date('H:i:s');
                 $sql = "SELECT * FROM schedules WHERE id = '$sched'";
@@ -32,16 +31,16 @@ if (isset($_POST['employee'])) {
                 $srow = $squery->fetch_assoc();
                 $logstatus = ($lognow > $srow['time_in']) ? 0 : 1;
                 $status2 = ($lognow < $srow['time_out']) ? 1 : 2;
-                //
+
                 $sql = "INSERT INTO attendance (employee_id, date, time_in, status, status2) VALUES ('$id', '$date_now', NOW(), '$logstatus', '$status2')";
                 if ($conn->query($sql)) {
                     $output['message'] = 'Llegada: '.$row['firstname'].' '.$row['lastname'];
                 } else {
                     $output['error'] = true;
-                    $output['message'] = $conn->error;
+                    $output['message'] = 'Error en la inserción: ' . $conn->error;
                 }
             }
-        } else {
+        } elseif ($status == 'out') {
             $sql = "SELECT *, attendance.id AS uid FROM attendance LEFT JOIN employees ON employees.id=attendance.employee_id WHERE attendance.employee_id = '$id' AND date = '$date_now'";
             $query = $conn->query($sql);
             if ($query->num_rows < 1) {
@@ -49,12 +48,11 @@ if (isset($_POST['employee'])) {
                 $output['message'] = 'No se puede registrar tu salida, sin previamente registrar tu entrada.';
             } else {
                 $row = $query->fetch_assoc();
-                if ($row['time_out'] != '00:00:00') {
+                if ($row['time_out'] != '00:00:00' && !is_null($row['time_out'])) {
                     $output['error'] = true;
                     $output['message'] = 'Has registrado tu salida satisfactoriamente por el día de hoy';
                 } else {
-
-                    $sql = "UPDATE attendance SET time_out = NOW(), status2 = '$status2' WHERE id = '".$row['uid']."'";
+                    $sql = "UPDATE attendance SET time_out = NOW(), status2 = 2 WHERE id = '".$row['uid']."'";
                     if ($conn->query($sql)) {
                         $output['message'] = 'Salida: '.$row['firstname'].' '.$row['lastname'];
 
@@ -92,15 +90,21 @@ if (isset($_POST['employee'])) {
                         $conn->query($sql);
                     } else {
                         $output['error'] = true;
-                        $output['message'] = $conn->error;
+                        $output['message'] = 'Error en la actualización: ' . $conn->error;
                     }
                 }
             }
+        } else {
+            $output['error'] = true;
+            $output['message'] = 'Estado no válido';
         }
     } else {
         $output['error'] = true;
         $output['message'] = 'ID de Pasante no encontrado';
     }
+} else {
+    $output['error'] = true;
+    $output['message'] = 'Datos incompletos';
 }
 
 echo json_encode($output);
