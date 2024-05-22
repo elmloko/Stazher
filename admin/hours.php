@@ -62,7 +62,19 @@
                   </thead>
                   <tbody>
                     <?php
-                    $sql = "SELECT employees.employee_id AS empid, employees.firstname, employees.lastname, SUM(TIME_TO_SEC(TIMEDIFF(attendance.time_out, attendance.time_in))) AS totalHours FROM attendance INNER JOIN employees ON employees.id = attendance.employee_id GROUP BY attendance.employee_id";
+                    $sql = "SELECT 
+                    employees.employee_id AS empid, 
+                    employees.firstname, 
+                    employees.lastname, 
+                    SUM(TIME_TO_SEC(TIMEDIFF(attendance.time_out, attendance.time_in))) + TIME_TO_SEC(employees.add_hr) AS totalHours 
+                FROM 
+                    attendance 
+                INNER JOIN 
+                    employees 
+                ON 
+                    employees.id = attendance.employee_id 
+                GROUP BY 
+                    attendance.employee_id";
                     $query = $conn->query($sql);
 
                     while ($row = $query->fetch_assoc()) {
@@ -78,7 +90,7 @@
                           <td>" . $firstname . ' ' . $lastname . "</td>
                           <td>" . gmdate('H:i', $totalHours) . "</td>
                           <td>
-                            <button class='btn btn-primary btn-sm btn-flat add-schedule' data-empid='" . $empid . "'><i class='fa fa-clock-o'></i> Agregar Horario</button>
+                          <button class='btn btn-primary btn-sm btn-flat add-schedule' data-empid='" . $empid . "'><i class='fa fa-clock-o'></i> Agregar Horario</button>
                             <button class='btn btn-danger btn-sm btn-flat print-certificate' data-empid='" . $empid . "'><i class='fa fa-print'></i> Descargar en PDF</button>
                             <a href='certificate_edit.php?empid=" . $empid . "' class='btn btn-info btn-sm btn-flat'><i class='fa fa-file-word-o'></i> Descargar en Word</a>
                           </td>
@@ -97,6 +109,7 @@
     </div>
 
     <?php include 'includes/footer.php'; ?>
+    <?php include 'includes/add_schedule_modal.php'; ?>
   </div>
   <?php include 'includes/scripts.php'; ?>
   <script>
@@ -120,7 +133,15 @@
         var empid = $(this).data('empid');
         printCertificate(empid);
       });
+
+      $('.add-schedule').click(function(e) {
+        e.preventDefault();
+        var empid = $(this).data('empid');
+        $('#empid').val(empid); // Set the employee ID in the hidden input field
+        $('#addScheduleModal').modal('show'); // Open the modal
+      });
     });
+
 
     function getRow(id) {
       $.ajax({
@@ -147,14 +168,6 @@
     function printCertificate(empid) {
       window.location.href = 'certificate_print.php?empid=' + empid;
     }
-    $(document).ready(function() {
-        // Manejar clic en el botón Agregar Horario
-        $('.add-schedule').click(function() {
-            var empid = $(this).data('empid');
-            // Puedes redirigir a una página donde el usuario pueda seleccionar el horario
-            window.location.href = 'add_schedule.php?empid=' + empid;
-        });
-    });
   </script>
 </body>
 
