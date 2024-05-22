@@ -15,21 +15,37 @@ if (isset($_GET['empid'])) {
   include 'includes/session.php';
 
   // Obtener los datos del empleado utilizando el empid
-  $sql = "SELECT *, employees.id AS empid
-    FROM employees
-    LEFT JOIN position ON position.id = employees.position_id
-    LEFT JOIN schedules ON schedules.id = employees.schedule_id
-    LEFT JOIN modality ON modality.id = employees.modality_id
-    LEFT JOIN area ON area.id = employees.area_id
-    LEFT JOIN institution ON institution.id = employees.institution_id
-    LEFT JOIN career ON career.id = employees.career_id
-    LEFT JOIN (
-        SELECT employee_id, 
-        DATE_FORMAT(SEC_TO_TIME(SUM(TIME_TO_SEC(TIMEDIFF(attendance.time_out, attendance.time_in)))), '%H') AS totalHours
-        FROM attendance
-        GROUP BY employee_id
-    ) AS attendance_hours ON employees.id = attendance_hours.employee_id
-    WHERE employees.employee_id = '$empid'";
+  $sql = "SELECT employees.*, 
+  position.*, 
+  schedules.*, 
+  modality.*, 
+  area.*, 
+  institution.*, 
+  career.*, 
+  attendance_hours.totalHours, 
+  employees.id AS empid
+FROM employees
+LEFT JOIN position ON position.id = employees.position_id
+LEFT JOIN schedules ON schedules.id = employees.schedule_id
+LEFT JOIN modality ON modality.id = employees.modality_id
+LEFT JOIN area ON area.id = employees.area_id
+LEFT JOIN institution ON institution.id = employees.institution_id
+LEFT JOIN career ON career.id = employees.career_id
+LEFT JOIN (
+SELECT 
+   attendance.employee_id, 
+   HOUR(SEC_TO_TIME(SUM(TIME_TO_SEC(TIMEDIFF(attendance.time_out, attendance.time_in)) + TIME_TO_SEC(employees.add_hr)))) AS totalHours
+FROM 
+   attendance 
+INNER JOIN 
+   employees ON employees.id = attendance.employee_id
+GROUP BY 
+   attendance.employee_id
+) AS attendance_hours ON employees.id = attendance_hours.employee_id
+WHERE employees.employee_id = '$empid'";
+
+
+
 
   $query = $conn->query($sql);
   $employee = $query->fetch_assoc();
