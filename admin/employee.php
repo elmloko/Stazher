@@ -108,7 +108,7 @@
                           <?php echo $row['address']; ?>
                         </td>
                         <td>
-                          <?php echo $row['description'] . ' - ' . $row['name_area']; ?>
+                          <?php echo $row['description']; ?>
                         </td>
                         <td>
                           <?php echo $row['name_institution']; ?>

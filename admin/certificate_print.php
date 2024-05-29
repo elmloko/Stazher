@@ -87,7 +87,7 @@ WHERE employees.employee_id = '$empid'";
       <br>
       <p class="justificado">El suscrito <b>Lic. Boris Mario Miranda Velasco</b>, Director Administrativo Financiero de la Agencia Boliviana de Correos - AGBC, en uso de las atribuciones conferidas por Ley.</p><br>
       <h2><b>CERTIFICA A QUIEN CORRESPONDA:</b></h2>
-      <p class="justificado"> Que el <b>Sr./Sra.: ' . $employee['firstname'] . ' ' . $employee['lastname'] . '</b>, con Cédula de Identidad <b>N° ' . $employee['identity_card'] . ' </b> expedido en la ciudad de La Paz, realizó su ' . $employee['type_modality'] . ' en la ' . $employee['description'] . ' - ' . $employee['name_area'] . ' de nuestra institución, cumpliendo una carga horaria acumulada de ' . $employee['totalHours'] . ' horas de trabajo, con fecha de inicio desde el ' . $fecha_creacion . ' hasta el ' . $fecha_actual . ' .</p>
+      <p class="justificado"> Que el <b>Sr./Sra.: ' . $employee['firstname'] . ' ' . $employee['lastname'] . '</b>, con Cédula de Identidad <b>N° ' . $employee['identity_card'] . ' </b> expedido en la ciudad de La Paz, realizó su ' . $employee['type_modality'] . ' en la ' . $employee['description'] . ' de nuestra institución, cumpliendo una carga horaria acumulada de ' . $employee['totalHours'] . ' horas de trabajo, con fecha de inicio desde el ' . $fecha_creacion . ' hasta el ' . $fecha_actual . ' .</p>
       <br>
       <p class="justificado">Durante su permanencia en la Agencia, el Sr./Sra.: ' . $employee['firstname'] . ' ' . $employee['lastname'] . ' ha demostrado excelente aptitud, responsabilidad, puntualidad y colaboración en el desempeño de las funciones asignadas, desarrollando un alto grado de compromiso con la Agencia Boliviana de Correos - AGBC.</p>
       <br>
