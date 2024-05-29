@@ -51,7 +51,7 @@
 
                 <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i>
                   Nuevo</a>
-                  <a href="employee_print.php" class="btn btn-success btn-sm btn-flat pull-right">
+                <a href="employee_print.php" class="btn btn-success btn-sm btn-flat pull-right">
                   <span class="glyphicon glyphicon-print"></span> Imprimir Todos
                 </a>
               </div>
@@ -150,62 +150,62 @@
   </div>
   <?php include 'includes/scripts.php'; ?>
   <script>
-    $(function () {
-      $('.edit').click(function (e) {
+    $(document).ready(function () {
+      // Delegar el evento de clic para el botón de editar
+      $(document).on('click', '.edit', function (e) {
         e.preventDefault();
         $('#edit').modal('show');
         var id = $(this).data('id');
         getRow(id);
       });
 
-      $('.delete').click(function (e) {
+      // Delegar el evento de clic para el botón de eliminar
+      $(document).on('click', '.delete', function (e) {
         e.preventDefault();
         $('#delete').modal('show');
         var id = $(this).data('id');
         getRow(id);
       });
 
-      $('.photo').click(function (e) {
+      // Delegar el evento de clic para la foto
+      $(document).on('click', '.photo', function (e) {
         e.preventDefault();
         var id = $(this).data('id');
         getRow(id);
       });
 
+      function getRow(id) {
+        $.ajax({
+          type: 'POST',
+          url: 'employee_row.php',
+          data: { id: id },
+          dataType: 'json',
+          success: function (response) {
+            $('.empid').val(response.empid);
+            $('.employee_id').html(response.employee_id);
+            $('.del_employee_name').html(response.firstname + ' ' + response.lastname);
+            $('#employee_name').html(response.firstname + ' ' + response.lastname);
+            $('#edit_firstname').val(response.firstname);
+            $('#edit_lastname').val(response.lastname);
+            $('#edit_identity_card').val(response.identity_card);
+            $('#edit_address').val(response.address);
+            $('#edit_email').val(response.email);
+            $('#edit_career').val(response.career);
+            $('#edit_area').val(response.area);
+            $('#datepicker_edit').val(response.birthdate);
+            $('#edit_contact').val(response.contact_info);
+            $('#email_val').val(response.email).html(response.email);
+            $('#gender_val').val(response.gender).html(response.gender);
+            $('#position_val').val(response.position_id).html(response.description);
+            $('#career_val').val(response.career_id).html(response.name_career);
+            $('#area_val').val(response.area_id).html(response.name_area);
+            $('#modality_val').val(response.modality_id).html(response.type_modality);
+            $('#institution_val').val(response.institution_id).html(response.name_institution);
+            $('#schedule_val').val(response.schedule_id).html(response.time_in + ' - ' + response.time_out);
+          }
+        });
+      }
     });
-
-    function getRow(id) {
-      $.ajax({
-        type: 'POST',
-        url: 'employee_row.php',
-        data: {
-          id: id
-        },
-        dataType: 'json',
-        success: function (response) {
-          $('.empid').val(response.empid);
-          $('.employee_id').html(response.employee_id);
-          $('.del_employee_name').html(response.firstname + ' ' + response.lastname);
-          $('#employee_name').html(response.firstname + ' ' + response.lastname);
-          $('#edit_firstname').val(response.firstname);
-          $('#edit_lastname').val(response.lastname);
-          $('#edit_identity_card').val(response.identity_card);
-          $('#edit_address').val(response.address);
-          $('#edit_email').val(response.email);
-          $('#edit_career').val(response.career);
-          $('#edit_area').val(response.area);
-          $('#datepicker_edit').val(response.birthdate);
-          $('#edit_contact').val(response.contact_info);
-          $('#email_val').val(response.email).html(response.email);
-          $('#gender_val').val(response.gender).html(response.gender);
-          $('#position_val').val(response.position_id).html(response.description);
-          $('#career_val').val(response.career_id).html(response.name_career);
-          $('#area_val').val(response.area_id).html(response.name_area);
-          $('#modality_val').val(response.modality_id).html(response.type_modality);
-          $('#institution_val').val(response.institution_id).html(response.name_institution);
-          $('#schedule_val').val(response.schedule_id).html(response.time_in + ' - ' + response.time_out);
-        }
-      });
-    }
   </script>
 </body>
 
