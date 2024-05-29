@@ -46,9 +46,6 @@
         <div class="row">
           <div class="col-xs-12">
             <div class="box">
-              <!-- <div class="box-header with-border">
-                <a href="schedule_print.php" class="btn btn-success btn-sm btn-flat"><span class="glyphicon glyphicon-print"></span> Imprimir Todos</a>
-              </div> -->
               <div class="box-body">
                 <table id="example1" class="table table-bordered">
                   <thead>
@@ -63,34 +60,41 @@
                   <tbody>
                     <?php
                     $sql = "SELECT 
-                    employees.employee_id AS empid, 
-                    employees.firstname, 
-                    employees.lastname, 
-                    SUM(TIME_TO_SEC(TIMEDIFF(attendance.time_out, attendance.time_in))) + TIME_TO_SEC(employees.add_hr) AS totalHours 
-                FROM 
-                    attendance 
-                INNER JOIN 
-                    employees 
-                ON 
-                    employees.id = attendance.employee_id 
-                GROUP BY 
-                    attendance.employee_id";
+                              employees.employee_id AS empid, 
+                              employees.firstname, 
+                              employees.lastname, 
+                              SUM(TIME_TO_SEC(TIMEDIFF(attendance.time_out, attendance.time_in)) + TIME_TO_SEC(employees.add_hr)) AS totalSeconds
+                            FROM 
+                              attendance 
+                            INNER JOIN 
+                              employees 
+                            ON 
+                              employees.id = attendance.employee_id 
+                            GROUP BY 
+                              attendance.employee_id, 
+                              employees.employee_id, 
+                              employees.firstname, 
+                              employees.lastname;";
                     $query = $conn->query($sql);
 
                     while ($row = $query->fetch_assoc()) {
                       $empid = $row['empid'];
                       $firstname = $row['firstname'];
                       $lastname = $row['lastname'];
-                      $totalHours = $row['totalHours'];
+                      $totalSeconds = $row['totalSeconds'];
+
+                      // Formatear totalSeconds en horas y minutos
+                      $hours = floor($totalSeconds / 3600);
+                      $minutes = floor(($totalSeconds % 3600) / 60);
 
                       echo "
                         <tr>
                           <td class='hidden'></td>
                           <td>" . $empid . "</td>
                           <td>" . $firstname . ' ' . $lastname . "</td>
-                          <td>" . gmdate('H:i', $totalHours) . "</td>
+                          <td>" . sprintf('%d:%02d', $hours, $minutes) . "</td>
                           <td>
-                          <button class='btn btn-primary btn-sm btn-flat add-schedule' data-empid='" . $empid . "'><i class='fa fa-clock-o'></i> Agregar Horario</button>
+                            <button class='btn btn-primary btn-sm btn-flat add-schedule' data-empid='" . $empid . "'><i class='fa fa-clock-o'></i> Agregar Horario</button>
                             <button class='btn btn-danger btn-sm btn-flat print-certificate' data-empid='" . $empid . "'><i class='fa fa-print'></i> Descargar en PDF</button>
                             <a href='certificate_edit.php?empid=" . $empid . "' class='btn btn-info btn-sm btn-flat'><i class='fa fa-file-word-o'></i> Descargar en Word</a>
                           </td>
@@ -98,7 +102,6 @@
                       ";
                     }
                     ?>
-
                   </tbody>
                 </table>
               </div>
@@ -142,33 +145,6 @@
       });
     });
 
-
     function getRow(id) {
       $.ajax({
-        type: 'POST',
-        url: 'attendance_row.php',
-        data: {
-          id: id
-        },
-        dataType: 'json',
-        success: function(response) {
-          $('#datepicker_edit').val(response.date);
-          $('#attendance_date').html(response.date);
-          $('#edit_time_in').val(response.time_in);
-          $('#edit_time_out').val(response.time_out);
-          $('#empid').val(response.employee_id);
-          $('#attid').val(response.attid);
-          $('#employee_name').html(response.firstname + ' ' + response.lastname);
-          $('#del_attid').val(response.attid);
-          $('#del_employee_name').html(response.firstname + ' ' + response.lastname);
-        }
-      });
-    }
-
-    function printCertificate(empid) {
-      window.location.href = 'certificate_print.php?empid=' + empid;
-    }
-  </script>
-</body>
-
-</html>
+        type: 'POST
