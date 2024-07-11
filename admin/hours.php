@@ -63,7 +63,7 @@
                               employees.employee_id AS empid, 
                               employees.firstname, 
                               employees.lastname, 
-                              SUM(TIME_TO_SEC(TIMEDIFF(attendance.time_out, attendance.time_in)) + TIME_TO_SEC(employees.add_hr)) AS totalSeconds
+                              SUM(TIME_TO_SEC(TIMEDIFF(attendance.time_out, attendance.time_in))) AS totalSeconds
                             FROM 
                               attendance 
                             INNER JOIN 
@@ -147,4 +147,23 @@
 
     function getRow(id) {
       $.ajax({
-        type: 'POST
+        type: 'POST',
+        url: 'get_row.php',
+        data: {id:id},
+        dataType: 'json',
+        success: function(response) {
+          $('#edit_empid').val(response.employee_id);
+          $('#edit_firstname').val(response.firstname);
+          $('#edit_lastname').val(response.lastname);
+          $('#edit_position').val(response.position);
+          $('#edit_schedule').val(response.schedule_id);
+          $('#edit_timein').val(response.time_in);
+          $('#edit_timeout').val(response.time_out);
+          $('#edit_date').val(response.date);
+          $('#edit').modal('show');
+        }
+      });
+    }
+  </script>
+</body>
+</html>
