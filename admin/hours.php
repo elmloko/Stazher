@@ -134,7 +134,7 @@
       $('.print-certificate').click(function(e) {
         e.preventDefault();
         var empid = $(this).data('empid');
-        printCertificate(empid);
+        window.location.href = 'certificate_print.php?empid=' + empid;
       });
 
       $('.add-schedule').click(function(e) {
@@ -149,7 +149,9 @@
       $.ajax({
         type: 'POST',
         url: 'get_row.php',
-        data: {id:id},
+        data: {
+          id: id
+        },
         dataType: 'json',
         success: function(response) {
           $('#edit_empid').val(response.employee_id);
@@ -166,4 +168,5 @@
     }
   </script>
 </body>
+
 </html>
