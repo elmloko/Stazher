@@ -27,21 +27,21 @@
             <label for="identity_card" class="col-sm-3 control-label">Carnet de Identidad</label>
 
             <div class="col-sm-9">
-              <input type="number" class="form-control" id="identity_card" name="identity_card">
+              <input type="number" class="form-control" id="identity_card" name="identity_card" required>
             </div>
           </div>
           <div class="form-group">
             <label for="email" class="col-sm-3 control-label">Correo Electronico</label>
 
             <div class="col-sm-9">
-              <input type="email" class="form-control" id="edit_email" name="email">
+              <input type="email" class="form-control" id="edit_email" name="email" required>
             </div>
           </div>
           <div class="form-group">
             <label for="address" class="col-sm-3 control-label">Dirección</label>
 
             <div class="col-sm-9">
-              <textarea class="form-control" name="address" id="address"></textarea>
+              <textarea class="form-control" name="address" id="address" required></textarea>
             </div>
           </div>
           <div class="form-group">
@@ -49,7 +49,7 @@
 
             <div class="col-sm-9">
               <div class="date">
-                <input type="text" class="form-control" id="datepicker_add" name="birthdate">
+                <input type="text" class="form-control" id="datepicker_add" name="birthdate" required>
               </div>
             </div>
           </div>
@@ -57,7 +57,7 @@
             <label for="contact" class="col-sm-3 control-label">Numero de Telefono</label>
 
             <div class="col-sm-9">
-              <input type="number" class="form-control" id="contact" name="contact">
+              <input type="number" class="form-control" id="contact" name="contact" required>
             </div>
           </div>
           <div class="form-group">
