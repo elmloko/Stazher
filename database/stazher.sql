@@ -73,21 +73,20 @@ CREATE TABLE IF NOT EXISTS `attendance` (
   `status2` int NOT NULL,
   `num_hr` double DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla stazher.attendance: ~10 rows (aproximadamente)
 INSERT INTO `attendance` (`id`, `employee_id`, `date`, `time_in`, `status`, `time_out`, `status2`, `num_hr`) VALUES
 	(1, 35, '2024-04-04', '08:25:00', 1, '19:36:00', 2, 9),
 	(2, 35, '2024-06-05', '08:11:00', 1, '19:56:00', 2, 9),
 	(3, 36, '2024-06-05', '07:58:00', 1, '18:58:00', 2, 9),
-	(4, 53, '2024-06-05', '08:03:00', 1, '19:04:00', 2, 9),
 	(5, 47, '2024-06-05', '08:04:00', 1, '20:04:00', 2, 9),
 	(6, 36, '2024-06-02', '08:15:00', 1, '19:15:00', 2, 9),
 	(7, 36, '2024-05-22', '08:15:00', 1, '19:15:00', 2, 9),
-	(8, 35, '2024-07-11', '15:24:23', 0, '15:24:28', 2, 0),
-	(9, 57, '2024-07-11', '15:58:01', 0, '17:30:00', 1, 1.5166666666667),
 	(10, 57, '2024-07-15', '11:30:29', 0, '15:13:43', 2, 3.7166666666667),
-	(11, 35, '2024-07-15', '15:16:32', 0, '15:16:35', 2, 0);
+	(12, 35, '2024-07-01', '05:15:00', 1, '17:15:00', 1, 7.75),
+	(13, 57, '2023-05-30', '05:15:00', 1, '17:15:00', 1, 7.75),
+	(14, 57, '2023-05-29', '05:15:00', 1, '17:15:00', 1, 7.75);
 
 -- Volcando estructura para tabla stazher.career
 CREATE TABLE IF NOT EXISTS `career` (
@@ -114,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `cashadvance` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla stazher.cashadvance: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla stazher.cashadvance: ~1 rows (aproximadamente)
 INSERT INTO `cashadvance` (`id`, `date_advance`, `employee_id`, `amount`) VALUES
 	(1, '2020-01-07', '25', 50000);
 
@@ -126,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `deductions` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla stazher.deductions: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla stazher.deductions: ~1 rows (aproximadamente)
 INSERT INTO `deductions` (`id`, `description`, `amount`) VALUES
 	(5, 'Pago de EPS 4%', 2500);
 
@@ -156,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `employees` (
 
 -- Volcando datos para la tabla stazher.employees: ~109 rows (aproximadamente)
 INSERT INTO `employees` (`id`, `employee_id`, `firstname`, `lastname`, `identity_card`, `address`, `email`, `birthdate`, `contact_info`, `gender`, `position_id`, `schedule_id`, `institution_id`, `modality_id`, `career_id`, `area_id`, `photo`, `created_on`, `add_hr`) VALUES
-	(35, 'JC13607593', 'Jhaquelin Gabriela ', 'Condori Gallegos', 13607593, 'C/ Antonio Gallardo Z/ Gran Poder', 'gabriela1.gallegos2@gmail.com', '2000-12-13', '72079737', 'Female', 8, 2, 11, 1, 2, 0, '', '2024-05-20', '230:23:00'),
+	(35, 'JC13607593', 'Jhaquelin Gabriela ', 'Condori Gallegos', 13607593, 'C/ Antonio Gallardo Z/ Gran Poder', 'gabriela1.gallegos2@gmail.com', '2000-12-13', '72079737', 'Female', 8, 2, 11, 1, 2, 1, '', '2024-05-20', '230:23:00'),
 	(36, 'GG12422922', 'Gisela', 'Gonzales Choque', 12422922, 'B Dolores F 144, El Alto ', 'giselagonzales12422@gmail.com', '2003-10-01', '68193738', 'Female', 7, 2, 10, 1, 3, 2, '', '2024-05-20', '01:00:00'),
 	(37, 'NC9879810', 'Natassja ', 'Cala Villegas ', 9879810, 'Av. VÃ¡squez Z. Pura Pura C. BatallÃ³n Loa # 234-A ', 'natu15_48@hotmail.com', '1993-05-01', '75817134', 'Female', 8, 2, 11, 1, 1, 2, '', '2024-05-20', NULL),
 	(38, 'JC13815162', 'Jhasmin ', 'Catacora Ticona', 13815162, 'El Alto, Z/Mariscal Sucre C/Carpinter, 4555', 'jazmincatacora2003@gmail.com', '2003-08-16', '64078607', 'Female', 7, 2, 11, 1, 1, 2, '', '2024-05-21', NULL),
