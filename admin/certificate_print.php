@@ -17,7 +17,7 @@ if (isset($_GET['empid'])) {
   area.*, 
   institution.*, 
   career.*, 
-  attendance_hours.totalHours, 
+  attendance_hours.totalSeconds, 
   employees.id AS empid
 FROM employees
 LEFT JOIN position ON position.id = employees.position_id
@@ -29,7 +29,7 @@ LEFT JOIN career ON career.id = employees.career_id
 LEFT JOIN (
 SELECT 
    attendance.employee_id, 
-   HOUR(SEC_TO_TIME(SUM(TIME_TO_SEC(TIMEDIFF(attendance.time_out, attendance.time_in)) + TIME_TO_SEC(employees.add_hr)))) AS totalHours
+   SUM(TIME_TO_SEC(TIMEDIFF(attendance.time_out, attendance.time_in))) + SUM(TIME_TO_SEC(employees.add_hr)) AS totalSeconds
 FROM 
    attendance 
 INNER JOIN 
@@ -42,7 +42,11 @@ WHERE employees.employee_id = '$empid'";
   $query = $conn->query($sql);
   $employee = $query->fetch_assoc();
   // Verificar si se obtuvieron datos del empleado antes de acceder a sus propiedades.
-  if (!empty($employee) && isset($employee['firstname'], $employee['lastname'], $employee['identity_card'], $employee['type_modality'], $employee['description'], $employee['name_area'], $employee['totalHours'], $employee['created_on'])) {
+  if (!empty($employee) && isset($employee['firstname'], $employee['lastname'], $employee['identity_card'], $employee['type_modality'], $employee['description'], $employee['name_area'], $employee['totalSeconds'], $employee['created_on'])) {
+    // Convertir totalSeconds a horas
+    $totalSeconds = $employee['totalSeconds'];
+    $hours = round($totalSeconds / 3600);
+
     // Crear una instancia de TCPDF
     $pdf = new TCPDF('P', 'mm', 'A4', true, 'UTF-8');
 
@@ -87,7 +91,7 @@ WHERE employees.employee_id = '$empid'";
       <br>
       <p class="justificado">El suscrito <b>Lic. Boris Mario Miranda Velasco</b>, Director Administrativo Financiero de la Agencia Boliviana de Correos - AGBC, en uso de las atribuciones conferidas por Ley.</p><br>
       <h2><b>CERTIFICA A QUIEN CORRESPONDA:</b></h2>
-      <p class="justificado"> Que el <b>Sr./Sra.: ' . $employee['firstname'] . ' ' . $employee['lastname'] . '</b>, con Cédula de Identidad <b>N° ' . $employee['identity_card'] . ' </b> expedido en la ciudad de La Paz, realizó su ' . $employee['type_modality'] . ' en la ' . $employee['description'] . ' de nuestra institución, cumpliendo una carga horaria acumulada de ' . $employee['totalHours'] . ' horas de trabajo, con fecha de inicio desde el ' . $fecha_creacion . ' hasta el ' . $fecha_actual . ' .</p>
+      <p class="justificado"> Que el <b>Sr./Sra.: ' . $employee['firstname'] . ' ' . $employee['lastname'] . '</b>, con Cédula de Identidad <b>N° ' . $employee['identity_card'] . ' </b> expedido en la ciudad de La Paz, realizó su ' . $employee['type_modality'] . ' en la ' . $employee['description'] . ' de nuestra institución, cumpliendo una carga horaria acumulada de ' . $hours . ' horas de trabajo, con fecha de inicio desde el ' . $fecha_creacion . ' hasta el ' . $fecha_actual . ' .</p>
       <br>
       <p class="justificado">Durante su permanencia en la Agencia, el Sr./Sra.: ' . $employee['firstname'] . ' ' . $employee['lastname'] . ' ha demostrado excelente aptitud, responsabilidad, puntualidad y colaboración en el desempeño de las funciones asignadas, desarrollando un alto grado de compromiso con la Agencia Boliviana de Correos - AGBC.</p>
       <br>
@@ -113,3 +117,4 @@ WHERE employees.employee_id = '$empid'";
   header('Location: index.php');
   exit();
 }
+?>

@@ -63,7 +63,7 @@
                               employees.employee_id AS empid, 
                               employees.firstname, 
                               employees.lastname, 
-                              SUM(TIME_TO_SEC(TIMEDIFF(attendance.time_out, attendance.time_in))) AS totalSeconds
+                              SUM(TIME_TO_SEC(TIMEDIFF(attendance.time_out, attendance.time_in))) + TIME_TO_SEC(employees.add_hr) AS totalSeconds
                             FROM 
                               attendance 
                             INNER JOIN 
