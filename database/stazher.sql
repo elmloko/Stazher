@@ -16,7 +16,7 @@
 
 
 -- Volcando estructura de base de datos para stazher
-CREATE DATABASE IF NOT EXISTS `stazher` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE IF NOT EXISTS `stazher` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `stazher`;
 
 -- Volcando estructura para tabla stazher.absences
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `absences` (
   `employee_id` int NOT NULL,
   `date_absences` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Volcando datos para la tabla stazher.absences: ~0 rows (aproximadamente)
 
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `area` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name_area` varchar(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Volcando datos para la tabla stazher.area: ~5 rows (aproximadamente)
 INSERT INTO `area` (`id`, `name_area`) VALUES
@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `career` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name_career` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Volcando datos para la tabla stazher.career: ~6 rows (aproximadamente)
 INSERT INTO `career` (`id`, `name_career`) VALUES
@@ -270,7 +270,7 @@ CREATE TABLE IF NOT EXISTS `institution` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name_institution` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Volcando datos para la tabla stazher.institution: ~11 rows (aproximadamente)
 INSERT INTO `institution` (`id`, `name_institution`) VALUES
@@ -293,7 +293,7 @@ CREATE TABLE IF NOT EXISTS `licence` (
   `date_licence` date NOT NULL,
   `employee_id` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Volcando datos para la tabla stazher.licence: ~0 rows (aproximadamente)
 
@@ -302,7 +302,7 @@ CREATE TABLE IF NOT EXISTS `modality` (
   `id` int NOT NULL AUTO_INCREMENT,
   `type_modality` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Volcando datos para la tabla stazher.modality: ~3 rows (aproximadamente)
 INSERT INTO `modality` (`id`, `type_modality`) VALUES
