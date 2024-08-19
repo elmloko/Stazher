@@ -48,9 +48,27 @@
             <div class="box">
               <div class="box-header with-border">
                 <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i> Nuevo</a>
-                <a href="asistence_print.php" class="btn btn-success btn-sm btn-flat pull-right">
-                  <span class="glyphicon glyphicon-print"></span> Imprimir Todos
+                
+                <!-- Select para elegir el empleado -->
+                <div class="form-group" style="width: 200px; display: inline-block;">
+                  <label for="employeeSelect">Seleccione un Pasante:</label>
+                  <select id="employeeSelect" class="form-control">
+                    <option value="">Todos</option>
+                    <?php
+                    $sql = "SELECT * FROM employees";
+                    $query = $conn->query($sql);
+                    while($row = $query->fetch_assoc()){
+                        echo "<option value='".$row['id']."'>".$row['firstname']." ".$row['lastname']."</option>";
+                    }
+                    ?>
+                  </select>
+                </div>
+
+                <!-- Botón para imprimir reporte único -->
+                <a href="#" id="printUnique" class="btn btn-success btn-sm btn-flat pull-right">
+                    <span class="glyphicon glyphicon-print"></span> Imprimir Reporte Único
                 </a>
+
               </div>
               <div class="box-body">
                 <table id="example1" class="table table-bordered">
@@ -143,6 +161,13 @@
         }
       });
     }
+
+    // Script para manejar la impresión del reporte único
+    document.getElementById('printUnique').addEventListener('click', function() {
+        var employee_id = document.getElementById('employeeSelect').value;
+        var url = 'asistence_print_unique.php?employee_id=' + employee_id;
+        window.location.href = url;
+    });
   </script>
 </body>
 
