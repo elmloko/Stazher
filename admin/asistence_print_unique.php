@@ -5,8 +5,12 @@ function generateRow($conn, $employee_id)
 {
     $contents = '';
 
-    // Modificar la consulta SQL para filtrar por employee_id, pero sin agrupar por employee_id
-    $sql = "SELECT *, employees.employee_id AS empid, attendance.id AS attid 
+    // Modificar la consulta SQL para filtrar por employee_id y calcular las horas acumuladas, incluyendo add_hr
+    $sql = "SELECT *, 
+                employees.employee_id AS empid, 
+                attendance.id AS attid, 
+                TIMESTAMPDIFF(SECOND, attendance.time_in, attendance.time_out) AS totalSeconds,
+                IFNULL(employees.add_hr, 0) AS add_hr
             FROM attendance 
             LEFT JOIN employees ON employees.id=attendance.employee_id";
 
@@ -17,9 +21,24 @@ function generateRow($conn, $employee_id)
     $sql .= " ORDER BY attendance.date DESC, attendance.time_in DESC";
     
     $query = $conn->query($sql);
+    
+    $totalSeconds = 0;
+    $addHrIncluded = false; // Para asegurarnos de sumar add_hr solo una vez
+
     while ($row = $query->fetch_assoc()) {
         $timeIn = $row['time_in'] ? date('h:i A', strtotime($row['time_in'])) : '';
         $timeOut = $row['time_out'] ? date('h:i A', strtotime($row['time_out'])) : '';
+
+        // Calcular las horas acumuladas
+        if (is_numeric($row['totalSeconds'])) {
+            $totalSeconds += $row['totalSeconds']; // Sumar los segundos totales
+        }
+
+        // Incluir add_hr solo si tiene un valor numérico válido, es mayor que cero, y solo una vez
+        if (!$addHrIncluded && is_numeric($row['add_hr']) && $row['add_hr'] > 0) {
+            $totalSeconds += $row['add_hr'] * 3600; // Convertir horas adicionales a segundos
+            $addHrIncluded = true; // Asegurarse de que solo se sume una vez
+        }
 
         $contents .= "
             <tr>
@@ -31,6 +50,18 @@ function generateRow($conn, $employee_id)
             </tr>
         ";
     }
+
+    // Convertir los segundos totales a horas y minutos
+    $totalHours = floor($totalSeconds / 3600); // Obtener las horas completas
+    $totalMinutes = floor(($totalSeconds % 3600) / 60); // Obtener los minutos restantes
+
+    // Agregar fila para mostrar el total de horas acumuladas en horas y minutos
+    $contents .= "
+        <tr>
+            <td colspan='4' align='right'><b>Total Horas Acumuladas:</b></td>
+            <td align='center'><b>" . $totalHours . " horas y " . $totalMinutes . " minutos</b></td>
+        </tr>
+    ";
 
     return $contents;
 }
@@ -56,11 +87,11 @@ $content .= '
       <h3 align="center">Reporte de Asistencia de Pasantes</h3>
       <table border="1" cellspacing="0" cellpadding="3">  
           <tr>  
-          <th width="15%" align="center"><b>Codigo de Pasante</b></th>
+              <th width="15%" align="center"><b>Codigo de Pasante</b></th>
               <th width="25%" align="center"><b>Nombre Pasante</b></th>
               <th width="15%" align="center"><b>Fecha de Ingreso</b></th> 
-              <th width="20%" align="center"><b>Hora de  Entrada</b></th>
-              <th width="20%" align="center"><b>Hora de  Salida</b></th>
+              <th width="20%" align="center"><b>Hora de Entrada</b></th>
+              <th width="20%" align="center"><b>Hora de Salida</b></th>
           </tr>  
      ';
 
