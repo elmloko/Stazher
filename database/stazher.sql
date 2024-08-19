@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Versión del servidor:         8.0.30 - MySQL Community Server - GPL
+-- Versión del servidor:         10.4.32-MariaDB - mariadb.org binary distribution
 -- SO del servidor:              Win64
--- HeidiSQL Versión:             12.1.0.6537
+-- HeidiSQL Versión:             12.8.0.6908
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -16,23 +16,23 @@
 
 
 -- Volcando estructura de base de datos para stazher
-CREATE DATABASE IF NOT EXISTS `stazher` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE IF NOT EXISTS `stazher` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `stazher`;
 
 -- Volcando estructura para tabla stazher.absences
 CREATE TABLE IF NOT EXISTS `absences` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `reason` varchar(50) NOT NULL,
-  `employee_id` int NOT NULL,
+  `employee_id` int(11) NOT NULL,
   `date_absences` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla stazher.absences: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla stazher.admin
 CREATE TABLE IF NOT EXISTS `admin` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(30) NOT NULL,
   `password` varchar(60) NOT NULL,
   `firstname` varchar(50) NOT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `photo` varchar(200) NOT NULL,
   `created_on` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- Volcando datos para la tabla stazher.admin: ~2 rows (aproximadamente)
 INSERT INTO `admin` (`id`, `username`, `password`, `firstname`, `lastname`, `photo`, `created_on`) VALUES
@@ -49,10 +49,10 @@ INSERT INTO `admin` (`id`, `username`, `password`, `firstname`, `lastname`, `pho
 
 -- Volcando estructura para tabla stazher.area
 CREATE TABLE IF NOT EXISTS `area` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name_area` varchar(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla stazher.area: ~5 rows (aproximadamente)
 INSERT INTO `area` (`id`, `name_area`) VALUES
@@ -64,18 +64,18 @@ INSERT INTO `area` (`id`, `name_area`) VALUES
 
 -- Volcando estructura para tabla stazher.attendance
 CREATE TABLE IF NOT EXISTS `attendance` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `employee_id` int NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `employee_id` int(11) NOT NULL,
   `date` date NOT NULL,
   `time_in` time NOT NULL,
-  `status` int NOT NULL,
+  `status` int(11) NOT NULL,
   `time_out` time DEFAULT NULL,
-  `status2` int NOT NULL,
+  `status2` int(11) NOT NULL,
   `num_hr` double DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla stazher.attendance: ~10 rows (aproximadamente)
+-- Volcando datos para la tabla stazher.attendance: ~42 rows (aproximadamente)
 INSERT INTO `attendance` (`id`, `employee_id`, `date`, `time_in`, `status`, `time_out`, `status2`, `num_hr`) VALUES
 	(1, 35, '2024-04-04', '08:25:00', 1, '19:36:00', 2, 9),
 	(2, 35, '2024-06-05', '08:11:00', 1, '19:56:00', 2, 9),
@@ -86,14 +86,46 @@ INSERT INTO `attendance` (`id`, `employee_id`, `date`, `time_in`, `status`, `tim
 	(10, 57, '2024-07-15', '11:30:29', 0, '15:13:43', 2, 3.7166666666667),
 	(12, 35, '2024-07-01', '05:15:00', 1, '17:15:00', 1, 7.75),
 	(13, 57, '2023-05-30', '05:15:00', 1, '17:15:00', 1, 7.75),
-	(14, 57, '2023-05-29', '05:15:00', 1, '17:15:00', 1, 7.75);
+	(14, 57, '2023-05-29', '05:15:00', 1, '17:15:00', 1, 7.75),
+	(15, 57, '2024-08-13', '09:09:13', 1, NULL, 1, NULL),
+	(16, 65, '2024-08-13', '13:32:12', 0, '18:11:03', 2, 3.6333333333333),
+	(17, 76, '2024-08-13', '14:20:11', 0, '18:56:22', 2, 3.6),
+	(18, 77, '2024-08-13', '14:20:25', 0, '18:56:10', 2, 3.5833333333333),
+	(19, 84, '2024-08-13', '14:28:44', 0, NULL, 1, NULL),
+	(20, 36, '2024-08-13', '14:32:23', 0, '18:54:48', 2, 3.3666666666667),
+	(21, 65, '2024-08-14', '08:35:33', 1, '19:11:37', 2, 9.6),
+	(22, 84, '2024-08-14', '13:55:15', 0, '18:40:07', 2, 3.7333333333333),
+	(23, 76, '2024-08-14', '14:29:17', 0, '18:41:53', 2, 3.2),
+	(24, 36, '2024-08-14', '14:34:35', 0, NULL, 1, NULL),
+	(25, 65, '2024-08-15', '08:35:31', 1, '19:03:42', 2, 9.4666666666667),
+	(26, 36, '2024-08-15', '14:44:30', 0, '18:40:49', 2, 3.9333333333333),
+	(27, 76, '2024-08-15', '14:44:41', 0, '18:32:04', 2, 3.7833333333333),
+	(28, 77, '2024-08-15', '14:44:49', 0, '18:31:50', 2, 3.7833333333333),
+	(29, 84, '2024-08-16', '14:18:57', 0, '18:54:50', 2, 3.5833333333333),
+	(30, 76, '2024-08-16', '14:20:23', 0, '18:50:55', 2, 3.5),
+	(31, 65, '2024-08-16', '14:30:31', 0, '18:53:37', 2, 3.3833333333333),
+	(32, 77, '2024-08-16', '14:38:04', 0, '18:50:00', 2, 3.1833333333333),
+	(33, 36, '2024-08-16', '15:40:15', 0, '19:01:00', 2, 3.3333333333333),
+	(34, 113, '2024-08-16', '16:11:40', 0, NULL, 1, NULL),
+	(35, 151, '2024-08-19', '08:31:33', 1, NULL, 1, NULL),
+	(36, 112, '2024-08-19', '08:35:51', 1, NULL, 1, NULL),
+	(37, 132, '2024-08-19', '08:39:16', 0, NULL, 2, NULL),
+	(38, 146, '2024-08-19', '08:41:13', 0, NULL, 2, NULL),
+	(39, 85, '2024-08-19', '08:42:52', 1, NULL, 1, NULL),
+	(40, 150, '2024-08-19', '08:43:55', 1, NULL, 1, NULL),
+	(41, 113, '2024-08-19', '08:45:02', 1, NULL, 1, NULL),
+	(42, 80, '2024-08-19', '08:46:32', 1, NULL, 1, NULL),
+	(43, 40, '2024-08-19', '08:46:49', 1, NULL, 1, NULL),
+	(44, 155, '2024-08-19', '08:47:07', 1, NULL, 1, NULL),
+	(45, 162, '2024-08-19', '08:53:07', 1, NULL, 1, NULL),
+	(46, 156, '2024-08-19', '09:02:33', 1, NULL, 1, NULL);
 
 -- Volcando estructura para tabla stazher.career
 CREATE TABLE IF NOT EXISTS `career` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name_career` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla stazher.career: ~6 rows (aproximadamente)
 INSERT INTO `career` (`id`, `name_career`) VALUES
@@ -106,12 +138,12 @@ INSERT INTO `career` (`id`, `name_career`) VALUES
 
 -- Volcando estructura para tabla stazher.cashadvance
 CREATE TABLE IF NOT EXISTS `cashadvance` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `date_advance` date NOT NULL,
   `employee_id` varchar(15) NOT NULL,
   `amount` double NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- Volcando datos para la tabla stazher.cashadvance: ~1 rows (aproximadamente)
 INSERT INTO `cashadvance` (`id`, `date_advance`, `employee_id`, `amount`) VALUES
@@ -119,11 +151,11 @@ INSERT INTO `cashadvance` (`id`, `date_advance`, `employee_id`, `amount`) VALUES
 
 -- Volcando estructura para tabla stazher.deductions
 CREATE TABLE IF NOT EXISTS `deductions` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `description` varchar(100) NOT NULL,
   `amount` double NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- Volcando datos para la tabla stazher.deductions: ~1 rows (aproximadamente)
 INSERT INTO `deductions` (`id`, `description`, `amount`) VALUES
@@ -131,29 +163,29 @@ INSERT INTO `deductions` (`id`, `description`, `amount`) VALUES
 
 -- Volcando estructura para tabla stazher.employees
 CREATE TABLE IF NOT EXISTS `employees` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `employee_id` varchar(15) NOT NULL,
   `firstname` varchar(50) NOT NULL,
   `lastname` varchar(50) NOT NULL,
-  `identity_card` int NOT NULL,
+  `identity_card` int(11) NOT NULL,
   `address` text NOT NULL,
   `email` varchar(50) NOT NULL,
   `birthdate` date NOT NULL,
   `contact_info` varchar(100) NOT NULL,
   `gender` varchar(10) NOT NULL,
-  `position_id` int NOT NULL,
-  `schedule_id` int NOT NULL,
-  `institution_id` int NOT NULL,
-  `modality_id` int NOT NULL,
-  `career_id` int NOT NULL,
-  `area_id` int NOT NULL,
+  `position_id` int(11) NOT NULL,
+  `schedule_id` int(11) NOT NULL,
+  `institution_id` int(11) NOT NULL,
+  `modality_id` int(11) NOT NULL,
+  `career_id` int(11) NOT NULL,
+  `area_id` int(11) NOT NULL,
   `photo` varchar(200) NOT NULL,
   `created_on` date NOT NULL,
   `add_hr` time DEFAULT '00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=145 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=163 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla stazher.employees: ~109 rows (aproximadamente)
+-- Volcando datos para la tabla stazher.employees: ~128 rows (aproximadamente)
 INSERT INTO `employees` (`id`, `employee_id`, `firstname`, `lastname`, `identity_card`, `address`, `email`, `birthdate`, `contact_info`, `gender`, `position_id`, `schedule_id`, `institution_id`, `modality_id`, `career_id`, `area_id`, `photo`, `created_on`, `add_hr`) VALUES
 	(35, 'JC13607593', 'Jhaquelin Gabriela ', 'Condori Gallegos', 13607593, 'C/ Antonio Gallardo Z/ Gran Poder', 'gabriela1.gallegos2@gmail.com', '2000-12-13', '72079737', 'Female', 8, 2, 11, 1, 2, 1, '', '2024-05-20', '230:23:00'),
 	(36, 'GG12422922', 'Gisela', 'Gonzales Choque', 12422922, 'B Dolores F 144, El Alto ', 'giselagonzales12422@gmail.com', '2003-10-01', '68193738', 'Female', 7, 2, 10, 1, 3, 2, '', '2024-05-20', '01:00:00'),
@@ -185,7 +217,7 @@ INSERT INTO `employees` (`id`, `employee_id`, `firstname`, `lastname`, `identity
 	(62, 'LM9169206', 'Luz Carla ', 'Mendez Molina', 9169206, 'Z/ Villa Adela C/ Plan 560 # 30', 'mendezluz885@gmail.com', '2002-03-27', '69911141', 'Female', 7, 2, 11, 1, 1, 2, '', '2024-05-22', '00:00:00'),
 	(63, 'HM14039720', 'Helen Betriz', 'Mamani Quispe', 14039720, 'Z/ Alto Chijini C/ 3 # 100', 'helenheidimq@gmail.com', '2003-01-16', '68016337', 'Female', 9, 2, 11, 1, 2, 2, '', '2024-05-23', '00:00:00'),
 	(64, 'DM9911741', 'Diego Benjamin ', 'Machicado Lima', 9911741, 'Z/ central C/ Yanacocha #780', 'Diegobenji5@gmail.com', '2003-04-24', '60545405', 'Male', 8, 2, 11, 1, 2, 2, '', '2024-05-23', '00:00:00'),
-	(65, 'JF10083707', 'Jessica Aracelly', 'Fernandez Flores ', 10083707, 'Z/ Santa BÃ¡rbara c/ Obispo CÃ¡rdenas #1733', 'aracelifernandez1123@gmail.com', '2004-05-06', '62506838', 'Female', 9, 2, 11, 1, 2, 2, '', '2024-05-23', '00:00:00'),
+	(65, 'JF10083707', 'Jessica Aracelly', 'Fernandez Flores ', 10083707, 'Z/ Santa BÃ¡rbara c/ Obispo CÃ¡rdenas #1733', 'aracelifernandez1123@gmail.com', '2004-05-06', '62506838', 'Female', 9, 2, 11, 1, 2, 2, '', '2024-05-23', '146:00:00'),
 	(66, 'AS12894061', 'Alison ', 'Sola Mamani ', 12894061, 'Z/ Chayapampa Av/ constituciÃ³n #1215', 'handealison@gmail.com', '2004-06-20', '69813288', 'Female', 7, 2, 11, 1, 2, 2, '', '2024-05-23', '00:00:00'),
 	(67, 'AV13761759', 'Abner Diego', 'Villalobos Villalobos', 13761759, 'Z/ Bajo Llojeta C/ Chuquisaca # 1389', 'villalobos.abner7@gmail.com', '2003-12-16', '71510973', 'Male', 8, 2, 11, 1, 2, 2, '', '2024-05-23', '00:00:00'),
 	(68, 'AG10084118', 'Angela Lessly', 'Gutierrez Castro ', 10084118, 'Z/ Alto Chijini C/4 # 2529', 'angela.gutierrez9703@gmail.com', '2003-07-09', '65685460', 'Female', 8, 2, 11, 1, 2, 2, '', '2024-05-24', '00:00:00'),
@@ -194,12 +226,12 @@ INSERT INTO `employees` (`id`, `employee_id`, `firstname`, `lastname`, `identity
 	(71, 'DS10927312', 'Diego ', 'Salazar Martinez ', 10927312, 'Z/ Alto Llojeta C/ Santa Cruz #20', 'diegosalazar27sm@gmail.com', '2003-12-27', '73244606', 'Male', 8, 2, 11, 1, 2, 2, '', '2024-05-24', '00:00:00'),
 	(72, 'JL13761963', 'Jhasmin Valeria ', 'Loayza Cachi ', 13761963, 'Z/ Bolognia C/ Alcorwesa # 138', 'jhas3677@gmail.com', '2002-10-23', '78850334', 'Female', 9, 2, 11, 1, 2, 2, '', '2024-05-24', '00:00:00'),
 	(73, 'CQ13969930', 'Camila Mariana ', 'Quispe Copana', 13969930, 'Z/ Alto Obrajes C/ 1 # 773', 'q.camila.c@gmail.com', '2003-12-19', '73239383', 'Female', 8, 2, 11, 1, 2, 2, '', '2024-05-24', '00:00:00'),
-	(74, 'ML13492671', 'Miguel Angel ', 'Laura Mamani ', 13492671, 'Z/ Obrajes Av/ Mecapaca # 150', 'laura.13492671@gmail.com', '1999-11-17', '70150720', 'Male', 7, 2, 11, 1, 3, 2, '', '2024-05-24', '00:00:00'),
+	(74, 'ML13492671', 'Miguel Angel ', 'Laura Mamani ', 13492671, 'Z/ Obrajes Av/ Mecapaca # 150', 'laura.13492671@gmail.com', '1999-11-17', '70150720', 'Male', 7, 2, 11, 1, 3, 1, '', '2024-05-24', '00:00:00'),
 	(75, 'NP6829179', 'Noelia Ricelly', 'Perez Lopez', 6829179, 'Z/ Villa Victoria C/ Quintanilla Suazo', 'noe.ricel.perez.lo1103@gmail.com', '2003-11-11', '78784018', 'Female', 8, 2, 11, 1, 2, 2, '', '2024-05-24', '00:00:00'),
 	(76, 'IA11088976', 'Irma Rosario ', 'Acero Quispe ', 11088976, 'Bloque Norte 432 UrbanizaciÃ³n Chijini', 'acerorosario57@gmailcom', '2002-10-05', '69942850', 'Female', 8, 2, 11, 1, 3, 2, '', '2024-05-28', '00:00:00'),
-	(77, 'IQ12671149', 'Isahry Rubi', 'Quinteros Patana ', 12671149, 'Z/ Bajo San Antonio Av/ 31 de Octubre # 46', 'quinteros.patana.isahry.2022@inco.lapaz.org', '2004-05-29', '63107064', 'Female', 8, 2, 11, 1, 3, 2, '', '2024-05-28', '00:00:00'),
-	(78, 'MP9907836', 'Marcelo Iganacio ', 'Pacoricona Paco', 9907836, 'Z/ Calllampaya C/ Policarpi #1330', 'Ignaciopacoroconapaco@gmail.com', '2004-04-05', '77511674', 'Male', 8, 2, 11, 1, 2, 2, '', '2024-05-28', '00:00:00'),
-	(79, 'MA9866454', 'Mijael Max', 'Ayala Callizaya', 9866454, 'Z/ Alto Tejar C/ Ruperto Jurado  #1718', 'ferayala2907@gmail.com', '1998-10-14', '78789624', 'Male', 9, 2, 11, 1, 2, 3, '', '2024-05-28', '00:00:00'),
+	(77, 'IQ12671149', 'Isahry Ruby', 'Quinteros Patana ', 12671149, 'Z/ Bajo San Antonio Av/ 31 de Octubre # 46', 'quinteros.patana.isahry.2022@inco.lapaz.org', '2004-05-29', '63107064', 'Female', 8, 2, 11, 1, 3, 2, '', '2024-05-28', '00:00:00'),
+	(78, 'MP9907836', 'Marcelo Ignacio ', 'Pacoricona Paco', 9907836, 'Z/ Calllampaya C/ Policarpi #1330', 'Ignaciopacoriconapaco@gmail.com', '2004-04-05', '77511674', 'Male', 8, 2, 11, 1, 2, 2, '', '2024-05-28', '00:00:00'),
+	(79, 'MA9866454', 'Mijail Max', 'Ayala Callizaya', 9866454, 'Z/ Alto Tejar C/ Ruperto Jurado  #1718', 'ferayala2907@gmail.com', '1998-10-14', '78789624', 'Male', 9, 2, 11, 1, 2, 3, '', '2024-05-28', '00:00:00'),
 	(80, 'AG12959697', 'Abigail ', 'Guarachi Quispe', 12959697, 'Z/ Final Chasqui Pampa C/ 4 #1093', 'abiguarachi@gmail.com', '2004-02-20', '62331225', 'Female', 8, 2, 11, 1, 3, 2, '', '2024-05-28', '00:00:00'),
 	(81, 'KC13796947', 'Kevin Cristian ', 'Callisaya Yujra', 13796947, 'Z/ Final Los Andes C/ Pascoe # 1845', 'kevinyujragca@gmail.com', '2001-12-08', '69825935', 'Male', 9, 2, 11, 1, 1, 2, '', '2024-05-28', '00:00:00'),
 	(82, 'RP10081478', 'Ribaldo ', 'Paco Samo', 10081478, 'Z/ Alto Lima Av/ Arequipa #200', 'Ribaldopacosamo@gmail.com', '2000-09-20', '65568084', 'Male', 8, 2, 11, 1, 2, 2, '', '2024-05-28', '00:00:00'),
@@ -217,7 +249,7 @@ INSERT INTO `employees` (`id`, `employee_id`, `firstname`, `lastname`, `identity
 	(94, 'YC9092344', 'Yessica Yoselin ', 'Condori Mamani ', 9092344, 'Z/ Villa Dolores C/ A #160', 'condorimamaniyessicayoselin@gmail.com', '1994-12-29', '69726281', 'Female', 8, 2, 10, 1, 2, 2, '', '2024-05-31', '00:00:00'),
 	(95, 'PC11060438', 'Paola Adriana', 'Condori Corane', 11060438, 'Z/ BalliviÃ¡n C/ Nery', 'condorip429@gmail.com', '2002-10-03', '74905461', 'Female', 8, 2, 10, 1, 2, 2, '', '2024-05-31', '00:00:00'),
 	(96, 'GT13150497', 'Gladys Noemi ', 'Tancara Alanoca', 13150497, 'Z/ San Luis II C/ Alfredo Sanjinez # 2074', 'galytancara@gmail.com', '2000-01-24', '65141120', 'Female', 8, 2, 10, 1, 4, 2, '', '2024-05-31', '00:00:00'),
-	(97, 'NM13732965', 'Nelson ', 'Mamani Huanca', 13732965, 'Z/ Romero Pampa C/ Paico # 2034', 'nelsonmhx@gmail.com', '2001-10-28', '76540851', 'Male', 10, 2, 10, 1, 3, 2, '', '2024-05-31', '00:00:00'),
+	(97, 'NM13732965', 'Nelson ', 'Mamani Huanca', 13732965, 'Z/ Romero Pampa C/ Paico # 2034', 'nelsonmhx@gmail.com', '2001-10-28', '76540851', 'Male', 10, 2, 10, 1, 3, 5, '', '2024-05-31', '00:00:00'),
 	(98, 'JJ4947223', 'Javier Erasmo ', 'Jimenez Mamani ', 4947223, 'Z/ San Martin  C/ Juan Capriles # 2433', '321jimenezjavier@gmail.com', '1996-11-25', '79535545', 'Male', 8, 2, 10, 1, 3, 2, '', '2024-05-31', '00:00:00'),
 	(99, 'VM8282735', 'Victor Hugo', 'Mamani Gutierrez', 8282735, 'Z/ San JosÃ©  C/ Miguel Grau # 2144 ', 'victorhugomamanigutierrez123@gmail.com', '1996-09-19', '60603337', 'Male', 8, 2, 10, 1, 1, 2, '', '2024-05-31', '00:00:00'),
 	(100, 'LA13694457', 'Limberth ', 'Apaza Laura', 13694457, 'Z/ 12 de Octubre  Av/ 6 de Marzo # 505', 'apazalimberth925@gmail.com', '2002-01-15', '63819262', 'Male', 8, 2, 10, 1, 2, 2, '', '2024-05-31', '00:00:00'),
@@ -226,14 +258,14 @@ INSERT INTO `employees` (`id`, `employee_id`, `firstname`, `lastname`, `identity
 	(103, 'DM11542808', 'Deymar Adrian', 'Mollo Flores ', 11542808, 'Z/ Pacajes  C/ 6 # 504', 'mollofloresdeymar@gmail.com', '1997-03-26', '68077108', 'Male', 8, 2, 10, 1, 2, 2, '', '2024-05-31', '00:00:00'),
 	(104, 'KR9915225', 'Kevin Jhoel ', 'Ramos Condori', 9915225, 'Z/ 10 de Febrero C/ Alamos #4114', 'jhoelramos5@gmail.com', '1999-09-17', '65688210', 'Male', 8, 2, 10, 1, 3, 2, '', '2024-05-31', '00:00:00'),
 	(105, 'JM12637691', 'Juan Daniel ', 'Mamani Ali', 12637691, 'Z/ Central C/ Iturralde # 95', 'jd523217@gmail.com', '2002-11-09', '60626248', 'Male', 10, 2, 10, 1, 3, 2, '', '2024-05-31', '00:00:00'),
-	(106, 'NA6666890', 'Nicol Alejandra', 'Apaza Merma', 6666890, 'Z/ Ballivian C/ Rene Vargas ', '36226.nicole@gmail.com', '2000-05-03', '77221290', 'Female', 8, 2, 10, 1, 2, 2, '', '2024-05-31', '00:00:00'),
+	(106, 'NA6666890', 'Nicol Alejandra', 'Apaza Merma', 6666890, 'Z/ Ballivian C/ Rene Vargas ', '326.nicolalejandra@gmail.com', '2000-05-03', '77221290', 'Female', 8, 2, 10, 1, 2, 2, '', '2024-05-31', '00:00:00'),
 	(107, 'LP10082266', 'Luis Angel ', 'Poma Perez', 10082266, 'Z/ Bella Vista C/ Alonzo de Mendoza #76', 'luisangelpomaperez0461997@gmail.com', '1997-06-04', '70571199', 'Male', 8, 2, 10, 1, 2, 2, '', '2024-05-31', '00:00:00'),
 	(108, 'YV13959964', 'Yesica ', 'Villegas Cupana ', 13959964, 'Z/ German Buch C/ Radio Viloco #230 ', 'yesiville725@gmail.com', '2003-12-09', '72572470', 'Female', 8, 2, 10, 1, 2, 2, '', '2024-05-31', '00:00:00'),
 	(109, 'SG9114049', 'Shirley Mishel', 'Gomez Morales', 9114049, 'Z/  Villa Adela C/ Andrea Arias # 1574', 'moralesshirley11@gmail.com', '2003-12-27', '78890130', 'Female', 8, 2, 10, 1, 2, 2, '', '2024-05-31', '00:00:00'),
 	(110, 'AQ9255040', 'Adolfo ', 'Quispe Quisbert', 9255040, 'Z/ Cosmos 79 C/ Romero Uma #1064', 'adolofoQ603@gmail.com', '2001-08-12', '76593323', 'Male', 8, 2, 10, 1, 2, 2, '', '2024-05-31', '00:00:00'),
 	(111, 'AF9250377', 'Andrea Belen ', 'Fernandez Loza', 9250377, 'Z/ Huayna PotosÃ­ C/ Azteca # 214', 'belfernandez.al@gmail.com', '1994-07-25', '63296371', 'Female', 8, 2, 10, 1, 2, 2, '', '2024-05-31', '00:00:00'),
 	(112, 'CC11064394', 'Celida ', 'Condori Lucana', 11064394, 'Z/ Villa Tunari C/ 17 # 800', 'celicondorilucana@gmail.com', '1995-11-10', '60541010', 'Female', 8, 2, 10, 1, 3, 2, '', '2024-05-31', '00:00:00'),
-	(113, 'ME4797272', 'Milenka Haydee', 'Espada Zalles', 4797272, 'Z/ San Luis Tasa C/ 10 # 5 ', 'milenkahaydeeespanazallez@gmail.com', '1977-10-17', '79527647', 'Female', 7, 2, 10, 1, 3, 2, '', '2024-05-31', '00:00:00'),
+	(113, 'ME4797272', 'Milenka Haydee', 'EspaÃ±a Zalles', 4797272, 'Z/ San Luis Tasa C/ 10 # 5 ', 'milenkahaydeeespanazallez@gmail.com', '1977-10-17', '79527647', 'Female', 7, 2, 10, 1, 3, 1, '', '2024-05-31', '00:00:00'),
 	(114, 'GQ9928818', 'Gloria ', 'Quispe Mamani ', 9928818, 'Z/ San Luis II Av/ Litoral # 5214 ', 'gloriaquispemamani1@gmail.com', '2004-04-02', '65111248', 'Female', 8, 2, 10, 1, 3, 2, '', '2024-05-31', '00:00:00'),
 	(115, 'AY13055848', 'Ademar ', 'Yujra Condori', 13055848, 'Z/ Alto Chijini  C/ Alfonso Ugarte # 1333 ', 'ades.123.yujra@gmail.com', '2001-10-30', '69926800', 'Male', 8, 2, 16, 1, 1, 2, '', '2024-05-31', '00:00:00'),
 	(116, 'CM9919368', 'Carlos Andres ', 'Mendoza Poma', 9919368, 'Z/ Inca Llojeta C/ 1 # 550 ', 'carand.550@gmail.com', '1996-07-16', '68125363', 'Male', 7, 2, 16, 1, 1, 2, '', '2024-05-31', '00:00:00'),
@@ -253,26 +285,45 @@ INSERT INTO `employees` (`id`, `employee_id`, `firstname`, `lastname`, `identity
 	(130, 'MV9194573', 'Miguel Alejandro', 'Villalobos Yampasi', 9194573, 'Z/ Villa San Antonio C/ 18 de Mayo # 33', 'aleyampasimiguel@gmail.com', '2001-03-17', '73708103', 'Male', 9, 2, 18, 1, 1, 3, '', '2024-06-14', '00:00:00'),
 	(131, 'RC10922718', 'Rosa Andrea ', 'Cosme Huanca', 10922718, 'Z/ Ciudadela Av/ San Lorenzo # 4009', 'cosmeandrea@gmail.com', '1998-10-12', '77589345', 'Female', 8, 2, 16, 1, 6, 2, '', '2024-06-14', '00:00:00'),
 	(132, 'JQ8449394', 'Juan Jose ', 'Quispe Calle ', 8449394, 'Z/ San Isidro C/ Bicentenario # 1', 'juanfaded@gmail.com', '1997-03-09', '73078411', 'Male', 7, 1, 16, 1, 1, 2, '', '2024-06-17', '00:00:00'),
-	(133, 'IA6858743', 'Irmar Daniel', 'Aruquipa Mendez', 6858743, 'Z/ Los Andes C/ ApÃ³stol Santiago #1183', 'daielango.20@gmail.com', '1987-12-02', '67074424', 'Male', 7, 1, 16, 1, 1, 2, '', '2024-06-17', '00:00:00'),
+	(133, 'IA6858743', 'Imar Daniel', 'Aruquipa Mendez', 6858743, 'Z/ Los Andes C/ ApÃ³stol Santiago #1183', 'daielango.20@gmail.com', '1987-12-02', '67074424', 'Male', 7, 1, 16, 1, 1, 2, '', '2024-06-17', '00:00:00'),
 	(134, 'JF7060799', 'Jenifer Alejandra ', 'Flores Mamani ', 7060799, 'Z/ Charapaqui 1 Av/ Jaime Mendoza #1514', 'jeniferflores690@gmail.com', '2003-01-04', '62518863', 'Female', 8, 2, 10, 1, 2, 2, '', '2024-06-17', '00:00:00'),
 	(135, 'DC7059845', 'Daniela', 'Casa Catari', 7059845, 'Z/ TarapacÃ¡ c/ Tito Yupanqui # 9350', 'casacataridaniela@gmail.com', '1999-09-20', '69741229', 'Female', 8, 2, 10, 1, 2, 2, '', '2024-06-17', '00:00:00'),
 	(136, 'SS7073322', 'Silvia ', 'Soliz Valero ', 7073322, 'Z/ Cosmos C/ Challa Centro  #2145', 'solizsilvia97@gmail.com', '2002-03-08', '69866354', 'Female', 8, 2, 10, 1, 2, 2, '', '2024-06-17', '00:00:00'),
-	(137, 'KV14620347', 'Keila Rubi ', 'Valdez Aragan ', 14620347, 'Z/ San Miguel E Av/ Walter Guevara #1110', 'keilaargan489@gmail.com', '2004-01-01', '67114282', 'Female', 8, 2, 10, 1, 4, 2, '', '2024-06-17', '00:00:00'),
+	(137, 'KV14620347', 'Keila Rubi ', 'Valdez Aragon ', 14620347, 'Z/ San Miguel E Av/ Walter Guevara #1110', 'keilaaragon489@gmail.com', '2004-01-01', '67114282', 'Female', 8, 2, 10, 1, 4, 2, '', '2024-06-17', '00:00:00'),
 	(138, 'AL10072238', 'Anahi ', 'Luque Mamani ', 10072238, 'Z/ 6de Marzo C/ Esmeralda #90', 'anahiluquemamani@gmail.com', '2001-06-18', '71289493', 'Female', 8, 2, 10, 1, 2, 2, '', '2024-06-17', '00:00:00'),
 	(139, 'MP6935618', 'Marco Antonio ', 'Paredes Ingali ', 6935618, 'Z/ UrkupiÃ±a 2 Viacha C/ 30 # 2269', 'antonyparedes2k@gmail.com', '2002-06-06', '76207524', 'Male', 8, 2, 10, 1, 2, 2, '', '2024-06-17', '00:00:00'),
 	(140, 'MG12701949', 'Miguel Angel ', 'Guarachi Apaza', 12701949, 'Z/ 7 de Septiembre C/ 7 de Octubre #1084', 'mayckangel14@gmail.com', '1999-10-14', '73559538', 'Male', 8, 2, 10, 1, 2, 2, '', '2024-06-17', '00:00:00'),
 	(141, 'JM13084562', 'Jhon Eddy', 'Mamani Aruni', 13084562, 'Z/ Villa Mercedes Av/ El Alto #2681', 'mamaniarunijhonedddy@gmail.com', '2003-10-02', '63107216', 'Male', 8, 2, 10, 1, 2, 2, '', '2024-06-17', '00:00:00'),
 	(142, 'EQ9932252', 'Esther Gabriela', 'Quispe Layme', 9932252, 'Z/ 1 de Marzo C/ El Palmar # 6215', 'qesther752@gmail.com', '2003-06-29', '68122279', 'Female', 8, 2, 10, 1, 3, 2, '', '2024-06-17', '00:00:00'),
-	(143, 'MA9129451', 'Marisol Noelia ', 'Alaro Vino ', 9129451, 'Z/ San Luis Pasa C/ HÃ©roes del Pacifico #1834', 'marisolnoeliaalarovino@gmail.coom', '2004-01-26', '73717025', 'Female', 8, 2, 10, 1, 2, 2, '', '2024-06-17', '00:00:00');
+	(143, 'MA9129451', 'Marisol Noelia ', 'Alaro Vino ', 9129451, 'Z/ San Luis Tasa Av / HÃ©roes del Pacifico #1834', 'marisolalaro26@gmail.coom', '2004-01-26', '73717025', 'Female', 8, 2, 10, 1, 2, 2, '', '2024-06-17', '00:00:00'),
+	(144, 'AC9248850', 'Alejandra Geovana', 'Condori Franco', 9248850, 'urbanizacion Eduardo Avaroa c/105 Nro 66', 'alejandracondorifranco23@gmail.com', '2001-11-02', '73298395', 'Female', 7, 1, 10, 1, 3, 2, '', '2024-08-16', '00:00:00'),
+	(145, 'MM9928903', 'Mary Victoria', 'Mamani Maqui', 9928903, 'z/San Luis Pampa av. Anchallani Nro 1024', 'marimaqui33@gmail.com', '2001-12-14', '60612094', 'Female', 7, 1, 10, 1, 2, 2, '', '2024-08-16', '00:00:00'),
+	(146, 'AP13495211', 'Abel Reynaldo', 'Patti Tito', 13495211, 'z/Pedro Domingo Murillo c/ Pedro Rodrigues Nro 1094', 'abel_pattitito1010@gmail.com', '2000-10-10', '77570821', 'Male', 9, 3, 10, 1, 2, 2, '', '2024-08-16', '00:00:00'),
+	(147, 'IM12864177', 'Israel Vicente', 'Mayta Rojas', 12864177, '14 de septiembre de Obrajes ', 'vicentemaytarojas@gmail.com', '2002-04-12', '78943123', 'Male', 9, 2, 10, 1, 2, 2, '', '2024-08-16', '00:00:00'),
+	(148, 'MQ8298999', 'Maribel Mishel', 'Quispe Mayta ', 8298999, 'Z/Alto de la alianza C/Castro pinto Nro 14', 'maribelmishel123@gmail.com', '2001-02-03', '', 'Female', 8, 2, 10, 1, 2, 2, '', '2024-08-16', '00:00:00'),
+	(149, 'EQ14706687', 'Edison Ruben', 'Quispe Ticona', 14706687, 'C/ Incuyo Z/ Cosmos 79 Nro 1125', 'edison.rqt@gmail.com', '2002-11-13', '63142495', 'Male', 8, 2, 10, 1, 3, 2, '', '2024-08-16', '00:00:00'),
+	(150, 'LA7095545', 'Lucero ', 'Alejo Valente', 7095545, 'Z/Villa Mercedes C/ Manco Kapac', 'alejovalentelucero@gmail.com', '2002-12-10', '72051761', 'Female', 8, 2, 10, 1, 2, 2, '', '2024-08-16', '00:00:00'),
+	(151, 'MM13246273', 'Micaela Miriam ', 'Mamani Huanca', 13246273, 'Av./ litoral Z/ Calvario Nro. 30', 'miriammicamamani@gmail.com', '1999-09-10', '79662705', 'Female', 8, 2, 19, 1, 6, 2, '', '2024-08-16', '00:00:00'),
+	(152, 'AC8361277', 'Abraham', 'Condori Quinta', 8361277, 'Z/ Villa Caluyo C/ 8 Nro 368', 'Abrahamisaccq@gmail.com', '2001-02-01', '76719328', 'Male', 8, 2, 10, 1, 2, 2, '', '2024-08-16', '00:00:00'),
+	(153, 'GM9913892', 'Gisela', 'Mamani Mendoza', 9913892, 'C/ Azteca Z/ Huayna Potosi Nro 3865', 'gismenma1899@gmail.com', '1999-03-18', '75219323', 'Female', 8, 2, 10, 1, 2, 2, '', '2024-08-16', '00:00:00'),
+	(154, 'KM8292895', 'Katerine Belen', 'Marca Condori ', 8292895, 'C/ 21 Z/ Huayna Potosi Nro 193', 'marcakaterine@gmail.com', '2000-04-28', '78926784', 'Female', 8, 2, 10, 1, 2, 2, '', '2024-08-16', '00:00:00'),
+	(155, 'RC7073403', 'Roman Felix ', 'Colque Condori', 7073403, 'Av/ 4 German Z/ 16 de Febrero Nro 2044', 'colque.7073403@gmail.com', '2002-09-22', '67148342', 'Male', 8, 2, 10, 1, 3, 2, '', '2024-08-16', '00:00:00'),
+	(156, 'JM7035207', 'Juan Manuel ', 'Mamani Mamani', 7035207, 'Av/ Sajama Nro 2085', 'Mamanijuan686@gmail.com', '1998-11-27', '7035207', 'Male', 8, 2, 10, 1, 2, 2, '', '2024-08-16', '00:00:00'),
+	(157, 'JL6950961', 'Jhonny German ', 'Limachi Condori ', 6950961, 'Z/ Villa Tunari C/ UcureÃ±a Nro 2575', 'jhonnygermanlimachicondori@gmal.com', '1992-10-11', '77599364', 'Male', 8, 2, 10, 1, 2, 2, '', '2024-08-16', '00:00:00'),
+	(158, 'LL6915311', 'Lourdes ', 'Leon Huchani', 6915311, 'Z/ San Marcos C/ C Nro 17 ', 'leonhuchanilourdes@gmail.com', '2001-09-02', '62566172', 'Female', 8, 2, 10, 1, 2, 2, '', '2024-08-16', '00:00:00'),
+	(159, 'JR9938350', 'Jhoselyn ', 'Rojas Ochoa', 9938350, 'C/ 8 Z/ Villa Dolores Nro 50', 'jhoselynrojasochoa99@gmail.com', '1999-06-20', '61143757', 'Female', 8, 2, 10, 1, 2, 2, '', '2024-08-16', '00:00:00'),
+	(160, 'AM13248025', 'Alviery Alvaro', 'Medina Flores', 13248025, 'Z/villamil Nro 2018', 'alvaromedina319@gmail.com', '2003-01-22', '65131541', 'Male', 9, 3, 12, 1, 2, 2, '', '2024-08-16', '00:00:00'),
+	(161, 'DC7131310', 'Denilson Deymar', 'Callisaya de la Cruz', 7131310, 'Z/Villa Copacabana Av/ Tito Yupanqui', 'deymar2211@gmail.com', '2002-10-23', '75258384', 'Male', 9, 3, 12, 1, 2, 2, '', '2024-08-16', '00:00:00'),
+	(162, 'YR6895294', 'YADIN MAGNO', 'ROSALES QUISPE', 6895294, 'Z. RIO SECO MZNO Â¨KÂ¨ PATIO 34 NÂ° 3466', 'yadinrosales@gmail.com', '2002-02-18', '79130443', 'Male', 8, 2, 13, 2, 2, 2, '', '2024-08-19', '00:00:00');
 
 -- Volcando estructura para tabla stazher.institution
 CREATE TABLE IF NOT EXISTS `institution` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name_institution` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Volcando datos para la tabla stazher.institution: ~11 rows (aproximadamente)
+-- Volcando datos para la tabla stazher.institution: ~12 rows (aproximadamente)
 INSERT INTO `institution` (`id`, `name_institution`) VALUES
 	(1, 'Universidad Privada Franz Tamayo'),
 	(2, 'Universidad Privada del Valle'),
@@ -284,25 +335,26 @@ INSERT INTO `institution` (`id`, `name_institution`) VALUES
 	(15, 'Universidad Privada Boliviana'),
 	(16, 'Instituto Tecnico Comercial La Paz'),
 	(17, 'Instituto Tecnico Financiero BOLIVIANO HOLANDES'),
-	(18, 'Universidad Mayor de San Andres (UMSA)');
+	(18, 'Universidad Mayor de San Andres (UMSA)'),
+	(19, 'Instituto Tecnico Los Angeles ');
 
 -- Volcando estructura para tabla stazher.licence
 CREATE TABLE IF NOT EXISTS `licence` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `reason` text NOT NULL,
   `date_licence` date NOT NULL,
-  `employee_id` int NOT NULL,
+  `employee_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla stazher.licence: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla stazher.modality
 CREATE TABLE IF NOT EXISTS `modality` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `type_modality` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Volcando datos para la tabla stazher.modality: ~3 rows (aproximadamente)
 INSERT INTO `modality` (`id`, `type_modality`) VALUES
@@ -312,22 +364,22 @@ INSERT INTO `modality` (`id`, `type_modality`) VALUES
 
 -- Volcando estructura para tabla stazher.overtime
 CREATE TABLE IF NOT EXISTS `overtime` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `employee_id` varchar(15) NOT NULL,
   `hours` double NOT NULL,
   `rate` double NOT NULL,
   `date_overtime` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- Volcando datos para la tabla stazher.overtime: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla stazher.position
 CREATE TABLE IF NOT EXISTS `position` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `description` varchar(150) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- Volcando datos para la tabla stazher.position: ~5 rows (aproximadamente)
 INSERT INTO `position` (`id`, `description`) VALUES
@@ -339,15 +391,15 @@ INSERT INTO `position` (`id`, `description`) VALUES
 
 -- Volcando estructura para tabla stazher.schedules
 CREATE TABLE IF NOT EXISTS `schedules` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `time_in` time NOT NULL,
   `time_out` time NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- Volcando datos para la tabla stazher.schedules: ~1 rows (aproximadamente)
 INSERT INTO `schedules` (`id`, `time_in`, `time_out`) VALUES
-	(2, '08:30:00', '18:30:00');
+	(2, '08:30:00', '20:00:00');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
