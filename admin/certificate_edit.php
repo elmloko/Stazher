@@ -34,7 +34,7 @@ LEFT JOIN career ON career.id = employees.career_id
 LEFT JOIN (
 SELECT 
    attendance.employee_id, 
-   SUM(TIME_TO_SEC(TIMEDIFF(attendance.time_out, attendance.time_in))) / 3600 + SUM(TIME_TO_SEC(employees.add_hr)) / 3600 AS totalHours
+   SUM(TIME_TO_SEC(TIMEDIFF(attendance.time_out, attendance.time_in))) / 3600 + IFNULL(MAX(TIME_TO_SEC(employees.add_hr)) / 3600, 0) AS totalHours
 FROM 
    attendance 
 INNER JOIN 
@@ -43,6 +43,7 @@ GROUP BY
    attendance.employee_id
 ) AS attendance_hours ON employees.id = attendance_hours.employee_id
 WHERE employees.employee_id = '$empid'";
+
 
   $query = $conn->query($sql);
   $employee = $query->fetch_assoc();
