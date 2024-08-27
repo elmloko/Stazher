@@ -117,33 +117,35 @@
   <?php include 'includes/scripts.php'; ?>
   <script>
     $(function() {
-      $('.edit').click(function(e) {
+      // Usar delegación de eventos para manejar el click en los botones
+      $(document).on('click', '.edit', function(e) {
         e.preventDefault();
         $('#edit').modal('show');
         var id = $(this).data('id');
         getRow(id);
       });
 
-      $('.delete').click(function(e) {
+      $(document).on('click', '.delete', function(e) {
         e.preventDefault();
         $('#delete').modal('show');
         var id = $(this).data('id');
         getRow(id);
       });
 
-      $('.print-certificate').click(function(e) {
+      $(document).on('click', '.print-certificate', function(e) {
         e.preventDefault();
         var empid = $(this).data('empid');
         window.location.href = 'certificate_print.php?empid=' + empid;
       });
 
-      $('.add-schedule').click(function(e) {
+      $(document).on('click', '.add-schedule', function(e) {
         e.preventDefault();
         var empid = $(this).data('empid');
         $('#empid').val(empid); // Set the employee ID in the hidden input field
         $('#addScheduleModal').modal('show'); // Open the modal
       });
     });
+
 
     function getRow(id) {
       $.ajax({
