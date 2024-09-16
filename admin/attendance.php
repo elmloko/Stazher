@@ -126,14 +126,15 @@
   <?php include 'includes/scripts.php'; ?>
   <script>
     $(function() {
-      $('.edit').click(function(e) {
+      // Utiliza la delegación de eventos en lugar de adjuntar directamente a .edit y .delete
+      $(document).on('click', '.edit', function(e) {
         e.preventDefault();
         $('#edit').modal('show');
         var id = $(this).data('id');
         getRow(id);
       });
 
-      $('.delete').click(function(e) {
+      $(document).on('click', '.delete', function(e) {
         e.preventDefault();
         $('#delete').modal('show');
         var id = $(this).data('id');
@@ -168,6 +169,21 @@
         var url = 'asistence_print_unique.php?employee_id=' + employee_id;
         window.location.href = url;
     });
+
+    $(document).ready(function() {
+  // Verifica si la tabla ya está inicializada
+  if (!$.fn.DataTable.isDataTable('#example1')) {
+    $('#example1').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false
+    });
+  }
+});
+
   </script>
 </body>
 
